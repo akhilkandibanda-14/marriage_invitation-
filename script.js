@@ -600,7 +600,7 @@ function initCalendarButtons() {
   if (weddingCalBtn) {
     const title = encodeURIComponent("Wedding Ceremony: Akhila & Nikhil");
     const details = encodeURIComponent("Auspicious Wedding Ceremony (Muhurtham: 8:09 AM onwards) of Akhila & Nikhil. Venue: Rama Upender Garden Function Hall, Thorrur.");
-    const location = encodeURIComponent("Rama Upender Garden Function Hall, Thorrur, Velikatte, Telangana 506163");
+    const location = encodeURIComponent("Rama Upender Garden Function Hall, Thorrur");
     const dates = "20261204T023900Z/20261204T063000Z";
     weddingCalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
   }
