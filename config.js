@@ -56,7 +56,7 @@ const WEDDING_CONFIG = {
     reception: {
       title: "Wedding Reception",
       subTitle: "An Evening of Celebration & Dinner",
-      salutation: "INVITED BY: KANDIBANDA ASHOK KUMAR (LATE) & KANDIBANDA MANJULA",
+      invitedBy: "Kandibanda Ashok Kumar (Late) & Kandibanda Manjula",
       dateFormatted: "5 December 2026",
       weekday: "Saturday",
       timeFormatted: "Dinner: 8:00 PM onwards",

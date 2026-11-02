@@ -231,6 +231,30 @@
   color: #701D25;
 }
 
+
+.reception-template-host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  max-width: 95%;
+  line-height: 1.15;
+  margin: 1px 0;
+}
+
+.reception-host-label {
+  font: 700 clamp(0.36rem, 0.72vw, 0.58rem) 'Montserrat', sans-serif;
+  letter-spacing: 0.12em;
+  color: #701D25;
+  text-transform: uppercase;
+}
+
+.reception-host-names {
+  font: 700 clamp(0.46rem, 0.9vw, 0.76rem) 'Playfair Display', serif;
+  color: #2D2D2D;
+  letter-spacing: 0.02em;
+}
+
 .reception-template-salutation {
   font: 700 clamp(0.38rem, 0.8vw, 0.66rem) 'Montserrat', sans-serif;
   letter-spacing: 0.1em;

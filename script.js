@@ -115,7 +115,7 @@ function initDataBinding() {
       <span>Invited by: <strong>${couple?.groom?.fatherName} & ${couple?.groom?.motherName}</strong></span>
     `);
   }
-  setText("templateReceptionSalutation", events?.reception?.salutation || "TOGETHER WITH THEIR FAMILIES");
+  setText("templateReceptionHostNames", events?.reception?.invitedBy || `${couple?.groom?.fatherName} & ${couple?.groom?.motherName}`);
   setText("receptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
   setText("receptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
   setText("receptionVenueName", events?.reception?.venueName || "To be announced");
@@ -224,7 +224,8 @@ function applyLanguage(language) {
       <span>${prefix}: <strong>${WEDDING_CONFIG.couple.groom.fatherName} & ${WEDDING_CONFIG.couple.groom.motherName}</strong></span>
     `);
   }
-  setText("templateReceptionSalutation", translations?.receptionSalutation || events?.reception?.salutation || "TOGETHER WITH THEIR FAMILIES");
+  setText("templateReceptionHostLabel", translations?.invitedByLabel || "INVITED BY");
+  setText("templateReceptionHostNames", translations?.receptionHostNames || events?.reception?.invitedBy || `${WEDDING_CONFIG.couple.groom.fatherName} & ${WEDDING_CONFIG.couple.groom.motherName}`);
   setText("templateReceptionCoupleNames", `${WEDDING_CONFIG.couple.groom.shortName} & ${WEDDING_CONFIG.couple.bride.shortName}`);
   setText("templateReceptionMessage", translations.receptionMessage);
   setText("templateReceptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
@@ -419,18 +420,17 @@ function initReceptionCardDownload() {
       };
 
       // 1. Auspicious Shloka
-      drawCentered("॥ శ్రీ గణేశాయ నమః ॥", 145, font(18, "'Noto Serif Telugu', serif"), "#701D25");
-      // 2. Salutation / Invited By
-      const salutationText = translations.receptionSalutation || events?.reception?.salutation || translations.salutation;
-      const salutationLines = wrap(salutationText, 620, font(11, "'Montserrat', sans-serif"));
-      salutationLines.slice(0, 2).forEach((line, index) => {
-        drawCentered(line, 172 + index * 14, font(11, "'Montserrat', sans-serif"), "#444444", 620);
-      });
+      drawCentered("॥ శ్రీ గణేశాయ నమః ॥", 140, font(18, "'Noto Serif Telugu', serif"), "#701D25");
+      // 2. Invited By
+      const hostLabel = translations.invitedByLabel || "INVITED BY";
+      drawCentered(hostLabel, 168, `700 ${font(11, "'Montserrat', sans-serif")}`, "#701D25");
+      const hostNames = translations.receptionHostNames || events?.reception?.invitedBy || `${couple.groom.fatherName} & ${couple.groom.motherName}`;
+      drawCentered(hostNames, 188, `700 ${font(14, "'Playfair Display', serif")}`, "#2D2D2D", 640);
       // 3. Reception Title
-      drawCentered(translations.receptionTitle.toUpperCase(), 216, font(22, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
+      drawCentered(translations.receptionTitle.toUpperCase(), 222, font(20, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
       // 4. Couple Names in Great Vibes cursive with initial capitals
       const coupleNames = `${couple.groom.shortName} & ${couple.bride.shortName}`;
-      drawCentered(coupleNames, 275, font(36, "'Great Vibes', cursive"), "#701D25", 680);
+      drawCentered(coupleNames, 272, font(36, "'Great Vibes', cursive"), "#701D25", 680);
 
       // 5. Message wrapped
       const messageFont = font(14, "'Cormorant Garamond', serif");
