@@ -7,15 +7,23 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  initDataBinding();
-  initCountdown();
-  initCalendarButtons();
-  initPetalAnimation();
-  initAudioController();
-  initScrollObservers();
-  initNavigationSpy();
-  initWeddingCardDownload();
-  initReceptionCardDownload();
+  const safeRun = (fn, name) => {
+    try {
+      fn();
+    } catch (err) {
+      console.error(`Error initializing ${name}:`, err);
+    }
+  };
+
+  safeRun(initDataBinding, "DataBinding");
+  safeRun(initCountdown, "Countdown");
+  safeRun(initCalendarButtons, "CalendarButtons");
+  safeRun(initPetalAnimation, "PetalAnimation");
+  safeRun(initAudioController, "AudioController");
+  safeRun(initScrollObservers, "ScrollObservers");
+  safeRun(initNavigationSpy, "NavigationSpy");
+  safeRun(initWeddingCardDownload, "WeddingCardDownload");
+  safeRun(initReceptionCardDownload, "ReceptionCardDownload");
 });
 
 const LANGUAGE_STORAGE_KEY = "wedding_invitation_language";
@@ -203,7 +211,7 @@ function applyLanguage(language) {
   setText("templateBrideRelation", translations?.brideRelation || events?.wedding?.brideRelation || `Daughter of ${WEDDING_CONFIG.couple.bride.fatherName} & ${WEDDING_CONFIG.couple.bride.motherName}`);
   const weddingParentsElem = document.getElementById("weddingParentsNote");
   if (weddingParentsElem) {
-    if (lang === "te") {
+    if (currentLanguage === "te") {
       setElementHtml("weddingParentsNote", `<span><strong>${WEDDING_CONFIG.couple.bride.fatherName}</strong> & <strong>${WEDDING_CONFIG.couple.bride.motherName}</strong> గార్ల సుపుత్రిక</span>`);
     } else {
       setElementHtml("weddingParentsNote", `<span>Daughter of <strong>${WEDDING_CONFIG.couple.bride.fatherName}</strong> & <strong>${WEDDING_CONFIG.couple.bride.motherName}</strong></span>`);
