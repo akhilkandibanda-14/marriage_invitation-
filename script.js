@@ -9,6 +9,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   initDataBinding();
   initCountdown();
+  initCalendarButtons();
   initPetalAnimation();
   initAudioController();
   initScrollObservers();
@@ -130,34 +131,45 @@ function initDataBinding() {
 function getSavedLanguage() {
   try {
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    return TRANSLATIONS?.[savedLanguage] ? savedLanguage : "en";
+    return (savedLanguage === "te" || savedLanguage === "en") ? savedLanguage : "en";
   } catch {
     return "en";
   }
 }
 
 function initLanguageSelector() {
-  const selector = document.getElementById("languageSelect");
-  if (!selector || selector.dataset.bound === "true") return;
+  const switchContainer = document.getElementById("languageSwitch");
+  if (!switchContainer || switchContainer.dataset.bound === "true") return;
 
-  selector.dataset.bound = "true";
-  selector.addEventListener("change", (event) => {
-    applyLanguage(event.target.value);
+  switchContainer.dataset.bound = "true";
+  switchContainer.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const selectedLang = btn.dataset.lang;
+      applyLanguage(selectedLang);
+    });
   });
 }
 
 function applyLanguage(language) {
-  const translations = TRANSLATIONS?.[language] || TRANSLATIONS.en;
-  currentLanguage = TRANSLATIONS?.[language] ? language : "en";
+  currentLanguage = (language === "te" || language === "en") ? language : "en";
+  const translations = TRANSLATIONS?.[currentLanguage] || TRANSLATIONS.en;
   document.documentElement.lang = currentLanguage;
 
-  const selector = document.getElementById("languageSelect");
-  if (selector) {
-    selector.value = currentLanguage;
-    selector.setAttribute("aria-label", translations.languageSelect);
+  try {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, currentLanguage);
+  } catch {
+    // Non-blocking
   }
-  const languageLabel = document.getElementById("languageLabel");
-  if (languageLabel) languageLabel.textContent = translations.languageLabel;
+
+  const switchContainer = document.getElementById("languageSwitch");
+  if (switchContainer) {
+    switchContainer.querySelectorAll(".lang-btn").forEach((btn) => {
+      const isActive = btn.dataset.lang === currentLanguage;
+      btn.classList.toggle("active", isActive);
+      btn.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
   const navigation = document.getElementById("siteNav");
   if (navigation) navigation.setAttribute("aria-label", translations.mainNavigation);
 
@@ -199,6 +211,28 @@ function applyLanguage(language) {
     const countdownGrid = document.getElementById("countdownGrid");
     if (countdownGrid) {
       countdownGrid.innerHTML = `<div class="countdown-static-message">${translations.countdownPast}</div>`;
+    }
+  } else {
+    const countdownGrid = document.getElementById("countdownGrid");
+    if (countdownGrid && !document.getElementById("timerDays")) {
+      countdownGrid.innerHTML = `
+        <div class="timer-box">
+          <span class="timer-number" id="timerDays">00</span>
+          <span class="timer-label" data-i18n="days">${translations.days}</span>
+        </div>
+        <div class="timer-box">
+          <span class="timer-number" id="timerHours">00</span>
+          <span class="timer-label" data-i18n="hours">${translations.hours}</span>
+        </div>
+        <div class="timer-box">
+          <span class="timer-number" id="timerMinutes">00</span>
+          <span class="timer-label" data-i18n="minutes">${translations.minutes}</span>
+        </div>
+        <div class="timer-box">
+          <span class="timer-number" id="timerSeconds">00</span>
+          <span class="timer-label" data-i18n="seconds">${translations.seconds}</span>
+        </div>
+      `;
     }
   }
 
@@ -377,6 +411,27 @@ function initCountdown() {
     return;
   }
 
+  if (!document.getElementById("timerDays") && gridEl) {
+    gridEl.innerHTML = `
+      <div class="timer-box">
+        <span class="timer-number" id="timerDays">00</span>
+        <span class="timer-label" data-i18n="days">${translations.days}</span>
+      </div>
+      <div class="timer-box">
+        <span class="timer-number" id="timerHours">00</span>
+        <span class="timer-label" data-i18n="hours">${translations.hours}</span>
+      </div>
+      <div class="timer-box">
+        <span class="timer-number" id="timerMinutes">00</span>
+        <span class="timer-label" data-i18n="minutes">${translations.minutes}</span>
+      </div>
+      <div class="timer-box">
+        <span class="timer-number" id="timerSeconds">00</span>
+        <span class="timer-label" data-i18n="seconds">${translations.seconds}</span>
+      </div>
+    `;
+  }
+
   function update() {
     const now = new Date().getTime();
     const distance = targetDate - now;
@@ -413,6 +468,29 @@ function initCountdown() {
 
   update();
   setInterval(update, 1000);
+}
+
+/* ====================================================================
+   ADD TO GOOGLE CALENDAR
+   ==================================================================== */
+function initCalendarButtons() {
+  const weddingCalBtn = document.getElementById("weddingCalendarBtn");
+  if (weddingCalBtn) {
+    const title = encodeURIComponent("Wedding Ceremony: Akhila & Nikhil");
+    const details = encodeURIComponent("Auspicious Wedding Ceremony (Muhurtham: 8:09 AM onwards) of Akhila & Nikhil. Venue: Srinivasa Gardens, Thorrur.");
+    const location = encodeURIComponent("Srinivasa Gardens, Thorrur");
+    const dates = "20261204T023900Z/20261204T063000Z";
+    weddingCalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+  }
+
+  const receptionCalBtn = document.getElementById("receptionCalendarBtn");
+  if (receptionCalBtn) {
+    const title = encodeURIComponent("Wedding Reception: Akhila & Nikhil");
+    const details = encodeURIComponent("Wedding Reception & Dinner of Akhila & Nikhil at 7:00 PM onwards. Venue: Kiranam & Jaggery Merchants Function Hall, Khammam.");
+    const location = encodeURIComponent("Kiranam & Jaggery Merchants Function Hall, Ramachandra Nagar Colony, Prakash Nagar, Khammam, Telangana 507003");
+    const dates = "20261205T133000Z/20261205T173000Z";
+    receptionCalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+  }
 }
 
 /* ====================================================================
