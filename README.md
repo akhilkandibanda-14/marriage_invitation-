@@ -1,30 +1,8 @@
-# Luxury Wedding & Reception Invitation
+# Marriage & Reception Invitation
 
-A mobile-first digital wedding invitation for **Akhila & Nikhil**, styled as a South Indian temple-heritage experience with warm ivory, sandalwood, antique gold, traditional maroon, copper, and emerald accents.
+A luxury South Indian digital wedding and reception invitation website crafted for **Akhila & Nikhil**, featuring traditional cultural aesthetics, dual-event cards, live countdown, Google Calendar integration, Google Maps navigation, Telugu and English language switching, and interactive music and petal effects.
 
-## Included experience
-
-- Opening invitation cover with Om motif, Sanskrit blessing, couple names, date, and reveal button
-- Wedding ceremony and reception sections with finalized invitation artwork
-- Configured venue details with Google Maps actions and Add to Calendar buttons
-- Live countdown timer actively ticking down to the wedding date
-- Dear Guest message
-- Subtle jasmine/gold ambient motifs with reduced-motion support
-- User-triggered ambient instrumental music with a floating toggle
-- Responsive layouts for mobile, tablet, and desktop
-- Temple-inspired borders, mango-leaf toranam details, kolam diamonds, and restrained jasmine/gold motion
-- Light romantic reception treatment with an inline, low-opacity couple line-art motif
-- Ivory/champagne countdown cards with emerald numerals and refined entrance transitions
-- Original supplied wedding and reception template artwork is preserved as local image assets
-- Wedding template text is rendered separately from `config.js`, with a downloadable composite card
-- Supplied couple and family photographs are used as responsive invitation highlights
-- English and Telugu two-button language switcher (no dropdown menu)
-- Locale-aware weekday/date formatting and Telugu font support
-
-RSVP forms, phone numbers, WhatsApp actions, card customization, and public card-editing controls have been removed. The invitation displays fixed event information from `config.js`.
-
-## Configuration
-
+## Live Configuration
 `config.js` is the single source of truth for couple names, parent details, invitation-by families, event dates, times, venues, map links, guest messaging, and music settings.
 
 - **Wedding Ceremony**: **Thursday, 4 December 2026 at 8:09 AM onwards** at **Rama Upender Garden Function Hall, Velikatte**. Live countdown is active.
@@ -36,27 +14,35 @@ The layout uses a wide centered desktop container, two-column invitation cards a
 
 ## Run locally
 
-### Direct browser
+### Option 1: Node.js (Recommended)
 
-Open `index.html` in a browser.
+```powershell
+npm start
+# or
+node server.js
+```
+Then open `http://localhost:3000`.
 
-### Local HTTP server
+### Option 2: Python HTTP Server
 
 ```powershell
 python -m http.server 8000
 ```
-
 Then open `http://localhost:8000`.
+
+### Option 3: Direct browser
+
+Double-click `index.html` to open in any web browser.
 
 ## Project files
 
 ```text
 index.html        Main invitation page
 style.css         Theme, responsive layout, and animations
+template.css      Custom template frame and card overlay styles
 script.js         Data binding, countdown, audio, petals, and scroll effects
 config.js         Centralized event configuration
-translations.js   English, Telugu, and Hindi language strings
-images/           Final wedding and reception artwork
+translations.js   English and Telugu language strings
+server.js         Local HTTP static file server
+images/           Wedding, reception, and portrait artwork
 ```
-
-No build step or external package installation is required.
