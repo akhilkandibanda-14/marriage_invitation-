@@ -58,9 +58,9 @@ const WEDDING_CONFIG = {
       dateFormatted: null,
       timeFormatted: null,
       targetDateISO: null,
-      venueName: null,
-      venueAddress: null,
-      googleMapsUrl: null,
+      venueName: "Kiranam & Jaggery Merchants Function Hall",
+      venueAddress: "Ramachandra Nagar Colony, Prakash Nagar, Khammam, Telangana 507003",
+      googleMapsUrl: "https://maps.app.goo.gl/q4hfi4xnTwYtdS6PA?g_st=iw",
       invitationMessage: "Join us for an enchanting evening filled with laughter, music, fine cuisine, and togetherness as we celebrate the newlyweds.",
       cardImage: "images/image.png"
     }
