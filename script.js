@@ -609,7 +609,7 @@ function initCalendarButtons() {
   if (receptionCalBtn) {
     const title = encodeURIComponent("Wedding Reception: Akhila & Nikhil");
     const details = encodeURIComponent("Wedding Reception & Dinner of Akhila & Nikhil (Dinner: 8:00 PM onwards). Venue: Kiranam & Jaggery Merchants Function Hall, Khammam.");
-    const location = encodeURIComponent("Kiranam & Jaggery Merchants Function Hall, Khammam, Ramachandra Nagar Colony, Prakash Nagar, Telangana 507003");
+    const location = encodeURIComponent("Kiranam & Jaggery Merchants Function Hall, Khammam");
     const dates = "20261205T143000Z/20261205T183000Z";
     receptionCalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
   }
