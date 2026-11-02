@@ -1412,6 +1412,15 @@ html:lang(hi) .reception-couple-title {
   line-height: 1.5;
 }
 
+#weddingLunch {
+  display: block;
+}
+
+.reception-parents-note strong {
+  display: block;
+  white-space: pre-line;
+}
+
 .card-action-bar {
   display: flex;
   gap: 14px;

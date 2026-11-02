@@ -31,7 +31,7 @@ const WEDDING_CONFIG = {
     "Kandibanda Ashok Kumar (Late) & Kandibanda Manjula",
     "Bonagiri Ravi & Kalyani",
     "Kandibanda Jaya Prakash & Nagalakshmi",
-    "Kandibanda Sridhes & Shailaja"
+    "Kandibanda Sridher & Shailaja"
   ],
 
   // Main Event Dates
@@ -45,6 +45,7 @@ const WEDDING_CONFIG = {
       dateFormatted: "4 December 2026",
       weekday: "Thursday",
       timeFormatted: "8:09 AM onwards",
+      lunchTimeFormatted: "1:00 PM",
       targetDateISO: "2026-12-04T08:09:00+05:30",
       countdownEnabled: true,
       venueName: "Rama Upender Garden Function Hall",
@@ -58,7 +59,11 @@ const WEDDING_CONFIG = {
     reception: {
       title: "Wedding Reception",
       subTitle: "An Evening of Celebration & Dinner",
-      invitedBy: "Kandibanda Ashok Kumar (Late) & Kandibanda Manjula",
+      invitedBy: [
+        "Kandibanda Jaya Prakash & Nagalakshmi",
+        "Kandibanda Ashok Kumar (Late) & Kandibanda Manjula",
+        "Kandibanda Sridher & Shailaja"
+      ],
       dateFormatted: "5 December 2026",
       weekday: "Saturday",
       timeFormatted: "Dinner: 8:00 PM onwards",

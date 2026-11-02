@@ -101,6 +101,7 @@ function initDataBinding() {
   setText("templateInvitationMessage", events?.wedding?.invitationMessage || "To be announced");
   setText("templateWeddingDate", formatEventDate(events?.wedding?.targetDateISO, events?.wedding?.dateFormatted));
   setText("templateWeddingTime", events?.wedding?.timeFormatted || "To be announced");
+  setText("templateWeddingLunch", events?.wedding?.lunchTimeFormatted || "To be announced");
   setText("templateWeddingVenue", events?.wedding?.venueName || "To be announced");
   setText("templateWeddingAddress", events?.wedding?.venueAddress || "To be announced");
 
@@ -111,13 +112,11 @@ function initDataBinding() {
 
   // Reception Section
   setText("receptionCoupleNames", `${groomShortName} & ${brideShortName}`);
-  const receptionParentsNote = document.getElementById("receptionParentsNote");
-  if (receptionParentsNote) {
-    setElementHtml("receptionParentsNote", `
-      <span>Invited by: <strong>${couple?.groom?.fatherName} & ${couple?.groom?.motherName}</strong></span>
-    `);
-  }
-  setText("templateReceptionHostNames", events?.reception?.invitedBy || `${couple?.groom?.fatherName} & ${couple?.groom?.motherName}`);
+  const receptionInvitedBy = Array.isArray(events?.reception?.invitedBy)
+    ? events.reception.invitedBy.join("\n")
+    : events?.reception?.invitedBy;
+  setText("receptionInvitedBy", receptionInvitedBy || "To be announced");
+  setText("templateReceptionHostNames", receptionInvitedBy || "To be announced");
   setText("receptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
   setText("receptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
   setText("receptionVenueName", events?.reception?.venueName || "To be announced");
@@ -211,8 +210,10 @@ function applyLanguage(language) {
   setText("templateBrideRelation", translations?.brideRelation || events?.wedding?.brideRelation || `Daughter of ${WEDDING_CONFIG.couple.bride.fatherName} & ${WEDDING_CONFIG.couple.bride.motherName}`);
   setText("weddingDate", formatEventDate(wedding.targetDateISO, wedding.dateFormatted, translations.dateLocale));
   setText("weddingTime", formatEventTime(wedding.timeFormatted, translations.muhurtham));
+  setText("weddingLunch", formatEventTime(wedding.lunchTimeFormatted, translations.lunchTime));
   setText("templateWeddingDate", formatEventDate(wedding.targetDateISO, wedding.dateFormatted, translations.dateLocale));
   setText("templateWeddingTime", formatEventTime(wedding.timeFormatted, translations.muhurtham));
+  setText("templateWeddingLunch", formatEventTime(wedding.lunchTimeFormatted, translations.lunchTime));
   setText("templateWeddingVenue", wedding.venueName || "To be announced");
   setText("templateWeddingAddress", wedding.venueAddress || "To be announced");
   setText("receptionTag", translations.receptionTag);
@@ -221,15 +222,9 @@ function applyLanguage(language) {
   setText("receptionMessage", translations.receptionMessage);
   setText("receptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
   setText("receptionTime", formatEventTime(reception.timeFormatted, translations.eveningTime));
-  const receptionParentsNote = document.getElementById("receptionParentsNote");
-  if (receptionParentsNote) {
-    const prefix = currentLanguage === "te" ? "ఆహ్వానించువారు" : "Invited by";
-    setElementHtml("receptionParentsNote", `
-      <span>${prefix}: <strong>${WEDDING_CONFIG.couple.groom.fatherName} & ${WEDDING_CONFIG.couple.groom.motherName}</strong></span>
-    `);
-  }
-  setText("templateReceptionHostLabel", translations?.invitedByLabel || "INVITED BY");
-  setText("templateReceptionHostNames", translations?.receptionHostNames || events?.reception?.invitedBy || `${WEDDING_CONFIG.couple.groom.fatherName} & ${WEDDING_CONFIG.couple.groom.motherName}`);
+  const receptionInvitedBy = Array.isArray(reception.invitedBy) ? reception.invitedBy.join("\n") : reception.invitedBy;
+  setText("receptionInvitedBy", receptionInvitedBy || "To be announced");
+  setText("templateReceptionHostNames", receptionInvitedBy || "To be announced");
   setText("templateReceptionCoupleNames", `${WEDDING_CONFIG.couple.groom.shortName} & ${WEDDING_CONFIG.couple.bride.shortName}`);
   setText("templateReceptionMessage", translations.receptionMessage);
   setText("templateReceptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
@@ -344,10 +339,6 @@ function initWeddingCardDownload() {
 
       drawCentered(wedding.sacredOm || "ఓం", 182, font(28, "'Noto Serif Telugu', serif"), "#701D25");
       drawCentered(wedding.sacredBlessing || "॥ శ్రీ గణేశాయ నమః ॥", 208, font(16, "'Noto Serif Telugu', serif"), "#701D25");
-      const hostLabel = translations.invitedByLabel || "INVITED BY";
-      drawCentered(hostLabel, 234, `700 ${font(10, "'Montserrat', sans-serif")}`, "#701D25");
-      const hostNames = translations.weddingHostNames || wedding.invitedBy || `${couple.bride.fatherName} & ${couple.bride.motherName}`;
-      drawCentered(hostNames, 252, `700 ${font(13, "'Playfair Display', serif")}`, "#2D2D2D", 540);
       drawCentered(`${couple.bride.fullName} & ${couple.groom.fullName}`, 295, font(28, "'Great Vibes', cursive"), "#701D25");
       const brideRelation = translations.brideRelation || wedding.brideRelation || `Daughter of ${couple.bride.fatherName} & ${couple.bride.motherName}`;
       drawCentered(brideRelation, 320, `italic ${font(10, "'Montserrat', sans-serif")}`, "#555555", 520);
@@ -357,9 +348,14 @@ function initWeddingCardDownload() {
       messageLines.slice(0, 3).forEach((line, index) => {
         drawCentered(line, 355 + index * 16, messageFont, "#701D25", 520);
       });
+      const hostLabel = translations.invitedByLabel || "INVITED BY";
+      drawCentered(hostLabel, 234, `700 ${font(10, "'Montserrat', sans-serif")}`, "#701D25");
+      const hostNames = translations.weddingHostNames || wedding.invitedBy || `${couple.bride.fatherName} & ${couple.bride.motherName}`;
+      drawCentered(hostNames, 252, `700 ${font(13, "'Playfair Display', serif")}`, "#2D2D2D", 540);
       drawCentered(formatEventDate(wedding.targetDateISO, wedding.dateFormatted, translations.dateLocale), 425, font(14, "'Playfair Display', serif"), "#701D25");
       drawCentered(formatEventTime(wedding.timeFormatted, translations.muhurtham), 450, font(12, "'Montserrat', sans-serif"), "#701D25");
-      drawCentered(wedding.venueName, 492, font(13, "'Playfair Display', serif"), "#701D25", 560);
+      drawCentered(formatEventTime(wedding.lunchTimeFormatted, translations.lunchTime), 468, font(11, "'Montserrat', sans-serif"), "#701D25");
+      drawCentered(wedding.venueName, 500, font(13, "'Playfair Display', serif"), "#701D25", 560);
       const addressLines = wrap(wedding.venueAddress, 510, font(10, "'Montserrat', sans-serif"));
       addressLines.slice(0, 2).forEach((line, index) => {
         drawCentered(line, 516 + index * 14, font(10, "'Montserrat', sans-serif"), "#701D25", 510);
@@ -431,32 +427,34 @@ function initReceptionCardDownload() {
       // 1. Auspicious Shloka
       drawCentered("॥ శ్రీ గణేశాయ నమః ॥", 140, font(18, "'Noto Serif Telugu', serif"), "#701D25");
       // 2. Invited By
-      const hostLabel = translations.invitedByLabel || "INVITED BY";
-      drawCentered(hostLabel, 168, `700 ${font(11, "'Montserrat', sans-serif")}`, "#701D25");
-      const hostNames = translations.receptionHostNames || events?.reception?.invitedBy || `${couple.groom.fatherName} & ${couple.groom.motherName}`;
-      drawCentered(hostNames, 188, `700 ${font(14, "'Playfair Display', serif")}`, "#2D2D2D", 640);
+      const receptionHostLabel = translations.invitedByLabel || "INVITED BY";
+      drawCentered(receptionHostLabel, 164, `700 ${font(10, "'Montserrat', sans-serif")}`, "#701D25");
+      const receptionHostNames = Array.isArray(reception.invitedBy) ? reception.invitedBy : [reception.invitedBy];
+      receptionHostNames.slice(0, 3).forEach((name, index) => {
+        drawCentered(name, 182 + index * 16, `700 ${font(11, "'Playfair Display', serif")}`, "#2D2D2D", 680);
+      });
       // 3. Reception Title
-      drawCentered(translations.receptionTitle.toUpperCase(), 222, font(20, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
+      drawCentered(translations.receptionTitle.toUpperCase(), 235, font(20, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
       // 4. Couple Names with clear capital letters
       const coupleNames = `${couple.groom.shortName} & ${couple.bride.shortName}`;
-      drawCentered(coupleNames, 272, `700 ${font(36, "'Playfair Display', serif")}`, "#701D25", 680);
+      drawCentered(coupleNames, 282, `700 ${font(36, "'Playfair Display', serif")}`, "#701D25", 680);
 
       // 5. Message wrapped
       const messageFont = font(14, "'Cormorant Garamond', serif");
       const messageLines = wrap(translations.receptionMessage, 600, messageFont);
       messageLines.slice(0, 3).forEach((line, index) => {
-        drawCentered(line, 320 + index * 20, messageFont, "#3D2B24", 600);
+        drawCentered(line, 330 + index * 20, messageFont, "#3D2B24", 600);
       });
 
       // 6. Date & Time
-      drawCentered(formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale), 395, `700 ${font(18, "'Playfair Display', serif")}`, "#1B432E");
-      drawCentered(formatEventTime(reception.timeFormatted, translations.eveningTime), 425, `700 ${font(16, "'Montserrat', sans-serif")}`, "#8C1D2D");
+      drawCentered(formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale), 405, `700 ${font(18, "'Playfair Display', serif")}`, "#1B432E");
+      drawCentered(formatEventTime(reception.timeFormatted, translations.eveningTime), 435, `700 ${font(16, "'Montserrat', sans-serif")}`, "#8C1D2D");
 
       // 7. Venue & Address
-      drawCentered(reception.venueName, 475, `700 ${font(16, "'Playfair Display', serif")}`, "#1A1A1A", 640);
+      drawCentered(reception.venueName, 485, `700 ${font(16, "'Playfair Display', serif")}`, "#1A1A1A", 640);
       const addressLines = wrap(reception.venueAddress, 580, font(12, "'Montserrat', sans-serif"));
       addressLines.slice(0, 2).forEach((line, index) => {
-        drawCentered(line, 502 + index * 16, font(12, "'Montserrat', sans-serif"), "#555555", 580);
+        drawCentered(line, 512 + index * 16, font(12, "'Montserrat', sans-serif"), "#555555", 580);
       });
 
       const link = document.createElement("a");

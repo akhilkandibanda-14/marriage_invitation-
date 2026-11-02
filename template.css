@@ -101,6 +101,7 @@
 
 .template-date,
 .template-time,
+.template-lunch,
 .template-venue,
 .template-address {
   max-width: 96%;
@@ -111,6 +112,10 @@
 .template-date {
   margin-top: 2%;
   font: 600 clamp(0.53rem, 1.05vw, 0.82rem) 'Playfair Display', serif;
+}
+
+.template-lunch {
+  font-size: clamp(0.4rem, 0.78vw, 0.64rem);
 }
 
 .template-venue {
@@ -284,6 +289,7 @@
   font: 700 clamp(0.46rem, 0.9vw, 0.76rem) 'Playfair Display', serif;
   color: #2D2D2D;
   letter-spacing: 0.02em;
+  white-space: pre-line;
 }
 
 .reception-template-salutation {
