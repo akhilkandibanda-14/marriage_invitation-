@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
 const LANGUAGE_STORAGE_KEY = "wedding_invitation_language";
 let currentLanguage = "en";
 
+function setElementHtml(id, html) {
+  const element = document.getElementById(id);
+  if (element && html) element.innerHTML = html;
+}
+
 /* ====================================================================
    1. DYNAMIC CONFIG DATA BINDING
    ==================================================================== */
@@ -43,13 +48,8 @@ function initDataBinding() {
     if (el && text) el.innerText = text;
   };
 
-  const setHtml = (id, html) => {
-    const el = document.getElementById(id);
-    if (el && html) el.innerHTML = html;
-  };
-
   // Cover
-  setHtml("coverCoupleNames", `<span>${brideFullName}</span><span class="amp">&</span><span>${groomFullName}</span>`);
+  setElementHtml("coverCoupleNames", `<span>${brideFullName}</span><span class="amp">&</span><span>${groomFullName}</span>`);
   setText("navBrand", `${brideShortName[0]} & ${groomShortName[0]}`);
   setText("footerHashtag", couple?.hashtag || `#${groomShortName}Weds${brideShortName}`);
   setText("coverDateHighlight", events?.wedding?.dateFormatted?.toUpperCase());
@@ -78,7 +78,7 @@ function initDataBinding() {
   ];
   const parentsNote = document.getElementById("weddingParentsNote");
   if (parentNames.every(Boolean) && parentsNote) {
-    setHtml("weddingParentsNote", `
+    setElementHtml("weddingParentsNote", `
       <span>Daughter of <strong>${couple.bride.fatherName}</strong> & <strong>${couple.bride.motherName}</strong></span><br>
       <span>Son of <strong>${couple.groom.fatherName}</strong> & <strong>${couple.groom.motherName}</strong></span>
     `);
@@ -113,7 +113,7 @@ function initDataBinding() {
   setText("receptionCoupleNames", `${groomShortName} & ${brideShortName}`);
   const receptionParentsNote = document.getElementById("receptionParentsNote");
   if (receptionParentsNote) {
-    setHtml("receptionParentsNote", `
+    setElementHtml("receptionParentsNote", `
       <span>Invited by: <strong>${couple?.groom?.fatherName} & ${couple?.groom?.motherName}</strong></span>
     `);
   }
@@ -224,7 +224,7 @@ function applyLanguage(language) {
   const receptionParentsNote = document.getElementById("receptionParentsNote");
   if (receptionParentsNote) {
     const prefix = currentLanguage === "te" ? "ఆహ్వానించువారు" : "Invited by";
-    setHtml("receptionParentsNote", `
+    setElementHtml("receptionParentsNote", `
       <span>${prefix}: <strong>${WEDDING_CONFIG.couple.groom.fatherName} & ${WEDDING_CONFIG.couple.groom.motherName}</strong></span>
     `);
   }
@@ -437,9 +437,9 @@ function initReceptionCardDownload() {
       drawCentered(hostNames, 188, `700 ${font(14, "'Playfair Display', serif")}`, "#2D2D2D", 640);
       // 3. Reception Title
       drawCentered(translations.receptionTitle.toUpperCase(), 222, font(20, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
-      // 4. Couple Names in Great Vibes cursive with initial capitals
+      // 4. Couple Names with clear capital letters
       const coupleNames = `${couple.groom.shortName} & ${couple.bride.shortName}`;
-      drawCentered(coupleNames, 272, font(36, "'Great Vibes', cursive"), "#701D25", 680);
+      drawCentered(coupleNames, 272, `700 ${font(36, "'Playfair Display', serif")}`, "#701D25", 680);
 
       // 5. Message wrapped
       const messageFont = font(14, "'Cormorant Garamond', serif");
