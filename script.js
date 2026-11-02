@@ -108,12 +108,12 @@ function initDataBinding() {
   }
 
   // Reception Section
-  setText("receptionCoupleNames", `${brideShortName} & ${groomShortName}`);
+  setText("receptionCoupleNames", `${groomShortName} & ${brideShortName}`);
   setText("receptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
   setText("receptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
   setText("receptionVenueName", events?.reception?.venueName || "To be announced");
   setText("receptionVenueAddress", events?.reception?.venueAddress || "To be announced");
-  setText("templateReceptionCoupleNames", `${brideFullName} & ${groomFullName}`.toUpperCase());
+  setText("templateReceptionCoupleNames", `${groomFullName} & ${brideFullName}`.toUpperCase());
   setText("templateReceptionMessage", events?.reception?.invitationMessage || "To be announced");
   setText("templateReceptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
   setText("templateReceptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
@@ -210,7 +210,7 @@ function applyLanguage(language) {
   setText("receptionMessage", translations.receptionMessage);
   setText("receptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
   setText("receptionTime", formatEventTime(reception.timeFormatted, translations.eveningTime));
-  setText("templateReceptionCoupleNames", `${WEDDING_CONFIG.couple.bride.fullName} & ${WEDDING_CONFIG.couple.groom.fullName}`.toUpperCase());
+  setText("templateReceptionCoupleNames", `${WEDDING_CONFIG.couple.groom.fullName} & ${WEDDING_CONFIG.couple.bride.fullName}`.toUpperCase());
   setText("templateReceptionMessage", translations.receptionMessage);
   setText("templateReceptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
   setText("templateReceptionTime", formatEventTime(reception.timeFormatted, translations.eveningTime));
@@ -410,7 +410,7 @@ function initReceptionCardDownload() {
       // 3. Reception Title
       drawCentered(translations.receptionTitle.toUpperCase(), 216, font(22, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
       // 4. Couple Names in UPPERCASE
-      const namesUpper = `${couple.bride.fullName} & ${couple.groom.fullName}`.toUpperCase();
+      const namesUpper = `${couple.groom.fullName} & ${couple.bride.fullName}`.toUpperCase();
       drawCentered(namesUpper, 272, `800 ${font(30, "'Cinzel', 'Playfair Display', serif")}`, "#8C1D2D", 680);
 
       // 5. Message wrapped
