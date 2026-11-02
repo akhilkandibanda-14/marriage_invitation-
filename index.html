@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Luxury Digital Wedding & Reception Invitation for Venkatesh Reddy & Ananya Reddy">
-  <title>Wedding & Reception Invitation | Venkatesh & Ananya</title>
+  <meta name="description" content="Luxury South Indian Wedding Invitation for Akhila & Nikhil">
+  <title>Wedding Invitation | Akhila & Nikhil</title>
   
-  <!-- Premium Google Fonts: Great Vibes (Calligraphy), Playfair Display (Luxury Serif), Cinzel (Royal Roman), Montserrat (Readable Sans) -->
+  <!-- Premium Latin and Indian-script fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Noto+Serif+Telugu:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="template.css">
 </head>
 <body>
 
@@ -25,7 +26,7 @@
   <!-- Floating Music Toggle Controller -->
   <button class="music-toggle-btn" id="musicToggleBtn" aria-label="Toggle Wedding Ambient Music" title="Play / Pause Celebration Music">
     <i class="fas fa-music"></i>
-    <span id="musicLabel">Music</span>
+    <span id="musicLabel" data-i18n="musicLabel">Music</span>
   </button>
   <audio id="bgAudio" loop preload="none">
     <source src="https://assets.mixkit.co/music/preview/mixkit-indian-traditional-sitar-and-tabla-song-1049.mp3" type="audio/mp3">
@@ -36,31 +37,38 @@
        ========================================================================= -->
   <header class="cover-section" id="cover">
     <div class="cover-card-envelope">
+      <div class="heritage-toranam" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
       <div class="cover-floral-crest">
-        <span class="sacred-motif">ॐ</span>
-        <p class="sacred-shloka">॥ श्री गणेशाय नमः ॥</p>
+        <span class="sacred-motif">ఓం</span>
+        <p class="sacred-shloka">॥ శ్రీ గణేశాయ నమః ॥</p>
       </div>
 
-      <p class="invitation-salutation">TOGETHER WITH THEIR FAMILIES</p>
+      <p class="invitation-salutation" data-i18n="salutation">TOGETHER WITH THEIR FAMILIES</p>
 
       <h1 class="cover-couple-names" id="coverCoupleNames">
-        <span>Venkatesh Reddy</span>
+        <span>Akhila</span>
         <span class="amp">&</span>
-        <span>Ananya Reddy</span>
+        <span>Nikhil</span>
       </h1>
 
-      <p class="cover-subtitle" id="coverSubtitle">
+      <p class="cover-subtitle" id="coverSubtitle" data-i18n="coverSubtitle">
         Invite you to join their sacred wedding ceremonies and joyful celebrations of love & togetherness.
       </p>
 
+      <figure class="cover-couple-photo">
+        <img src="images/couple_portrait.png" alt="Akhila and Nikhil together in traditional wedding attire" loading="eager">
+      </figure>
+
       <div class="cover-date-pill">
         <i class="far fa-calendar-alt"></i>
-        <span id="coverDateHighlight">DECEMBER 04 & 05, 2026</span>
+        <span id="coverDateHighlight">26 AUGUST 2026</span>
       </div>
 
       <div>
         <button class="btn-open-invitation" id="btnOpenInvitation" onclick="scrollToInvitation()">
-          <span>Open Invitation</span>
+          <span data-i18n="openInvitation">Open Invitation</span>
           <i class="fas fa-chevron-down"></i>
         </button>
       </div>
@@ -71,13 +79,19 @@
   <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
     <div class="nav-container">
       <a href="#cover" class="nav-brand" id="navBrand">V & A</a>
+      <div class="language-selector">
+        <label for="languageSelect" class="visually-hidden" id="languageLabel">Language</label>
+        <select id="languageSelect" aria-label="Select language">
+          <option value="en">English</option>
+          <option value="te">తెలుగు</option>
+          <option value="hi">हिन्दी</option>
+        </select>
+      </div>
       <ul class="nav-links">
-        <li><a href="#wedding">Wedding</a></li>
-        <li><a href="#reception">Reception</a></li>
-        <li><a href="#countdown">Countdown</a></li>
-        <li><a href="#guest">Dear Guest</a></li>
-        <li><a href="#rsvp">RSVP</a></li>
-        <li><a href="card.html" style="color:var(--gold-dark);"><i class="fas fa-download"></i> WhatsApp Cards</a></li>
+        <li><a href="#wedding" data-i18n="weddingNav">Wedding</a></li>
+        <li><a href="#reception" data-i18n="receptionNav">Reception</a></li>
+        <li><a href="#countdown" data-i18n="countdownNav">Countdown</a></li>
+        <li><a href="#guest" data-i18n="guestNav">Dear Guest</a></li>
       </ul>
     </div>
   </nav>
@@ -87,28 +101,47 @@
        ========================================================================= -->
   <section class="section wedding-section reveal-on-scroll" id="wedding">
     <div class="container">
+      <div class="temple-corner temple-corner-left" aria-hidden="true"></div>
+      <div class="temple-corner temple-corner-right" aria-hidden="true"></div>
       <div class="section-header">
-        <span class="section-tag">Auspicious Union</span>
+        <span class="section-tag" data-i18n="weddingTag">Auspicious Union</span>
         <h2 class="section-title" id="weddingTitle">Wedding Ceremony</h2>
         <div class="ornamental-divider"><i class="fas fa-om"></i></div>
       </div>
 
-      <div class="invitation-card-container">
-        <!-- Card Illustration: Temple Gopuram, Kalash & Mangalsutra -->
-        <div class="card-illustration-frame">
-          <img src="images/marriage_card.jpg" alt="Traditional Wedding Card Illustration with Temple Gopuram and Kalash" id="weddingCardImg" loading="lazy">
+      <div class="invitation-card-container wedding-artwork-container">
+        <div class="kolam-mark" aria-hidden="true">✦</div>
+        <!-- Original supplied wedding template with editable HTML text in its open center. -->
+        <div class="card-illustration-frame wedding-template-frame">
+          <div class="wedding-template-card" id="weddingTemplateCard">
+            <img src="images/wedding_template_original.png" alt="Original South Indian wedding invitation template with temple pillars, bells, banana leaves, lamps and couple" id="weddingCardImg" loading="eager">
+            <div class="wedding-template-copy">
+              <span class="template-sacred-om" id="templateSacredOm">ఓం</span>
+              <span class="template-sacred-blessing" id="templateSacredBlessing">॥ శ్రీ గణేశాయ నమః ॥</span>
+              <span class="template-salutation" data-i18n="salutation">TOGETHER WITH THEIR FAMILIES</span>
+              <span class="template-couple-names" id="templateCoupleNames"></span>
+              <span class="template-message" id="templateInvitationMessage"></span>
+              <span class="template-date" id="templateWeddingDate"></span>
+              <span class="template-time" id="templateWeddingTime"></span>
+              <span class="template-venue" id="templateWeddingVenue"></span>
+              <span class="template-address" id="templateWeddingAddress"></span>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Wedding Details Content -->
-        <div class="card-details-content">
+      <figure class="wedding-family-photo">
+        <img src="images/family_portrait_small.png" alt="Wedding family portrait with the couple and their family" loading="lazy">
+      </figure>
+
+      <!-- Wedding Details Content -->
+      <div class="wedding-details-container">
+        <div class="card-details-content wedding-details-content">
           <span class="badge-ceremony" id="weddingSubTitle">The Sacred Muhurtham</span>
           
-          <h3 class="couple-title-inline" id="weddingCoupleNames">Venkatesh & Ananya</h3>
+          <h3 class="couple-title-inline" id="weddingCoupleNames">Akhila & Nikhil</h3>
 
-          <p class="parents-note" id="weddingParentsNote">
-            Son of <strong>Sri Father's Name</strong> & <strong>Smt. Mother's Name</strong><br>
-            Daughter of <strong>Sri Bride's Father</strong> & <strong>Smt. Bride's Mother</strong>
-          </p>
+          <p class="parents-note" id="weddingParentsNote" hidden></p>
 
           <p class="event-message" id="weddingMessage">
             With the divine blessings of our elders and the almighty, we request the honor of your presence as two souls unite in the sacred bond of matrimony.
@@ -118,8 +151,9 @@
           <div class="detail-row">
             <i class="far fa-calendar-check" aria-hidden="true"></i>
             <div class="detail-info">
-              <strong id="weddingDate">Thursday, December 4, 2026</strong>
-              <span id="weddingTime">Muhurtham: 09:30 AM onwards</span>
+              <span class="detail-label" data-i18n="dateLabel">Date</span>
+              <strong id="weddingDate">Wednesday, 26 August 2026</strong>
+              <span id="weddingTime">Muhurtham: 11:00 AM onwards</span>
             </div>
           </div>
 
@@ -127,19 +161,20 @@
           <div class="detail-row">
             <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
             <div class="detail-info">
-              <strong id="weddingVenueName">Sri Raja Rajeshwari Kalyana Mandapam</strong>
-              <span id="weddingVenueAddress">Plot No. 12, Temple Road, Jubilee Hills, Hyderabad, Telangana 500033</span>
+              <span class="detail-label" data-i18n="venueLabel">Venue</span>
+              <strong id="weddingVenueName">Srinivasa Gardens, Thorrur</strong>
+              <span id="weddingVenueAddress">Srinivasa Gardens, Thorrur</span>
             </div>
           </div>
 
-          <!-- Actions: Open Map & Custom Card -->
+          <!-- Action: Open Map -->
           <div class="card-action-bar">
             <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn-luxury btn-map" id="weddingMapBtn">
-              <i class="fas fa-location-arrow"></i> Open Map
+              <i class="fas fa-location-arrow"></i> <span data-i18n="openMap">Open Map</span>
             </a>
-            <a href="card.html" class="btn-luxury btn-card-designer">
-              <i class="fas fa-paint-brush"></i> Customize Card
-            </a>
+            <button type="button" class="btn-luxury btn-download-card" id="downloadWeddingCard">
+              <i class="fas fa-download" aria-hidden="true"></i> <span data-i18n="downloadCard">Download Card</span>
+            </button>
           </div>
         </div>
       </div>
@@ -151,18 +186,38 @@
        ========================================================================= -->
   <section class="section reception-section reveal-on-scroll" id="reception">
     <div class="container">
+      <div class="reception-garland" aria-hidden="true">❖　❖　❖</div>
       <div class="section-header">
-        <span class="section-tag" style="color:var(--emerald-reception);">Evening of Joy</span>
+        <span class="section-tag" data-i18n="receptionTag" style="color:var(--emerald-reception);">Evening of Joy</span>
         <h2 class="section-title" id="receptionTitle" style="color:var(--emerald-reception);">Wedding Reception</h2>
         <div class="ornamental-divider" style="color:var(--emerald-reception);"><i class="fas fa-glass-cheers"></i></div>
       </div>
 
-      <div class="reception-card-container">
+      <div class="reception-artwork-photo card-illustration-frame" style="border-color: rgba(27,67,46,0.3);">
+        <img src="images/image.png" alt="Original reception invitation artwork with the couple and garden setting" id="receptionCardImg" loading="lazy">
+      </div>
+
+      <figure class="reception-family-photo">
+        <img src="images/family_portrait_large.png" alt="Large wedding family portrait with the couple and their families" loading="lazy">
+      </figure>
+
+      <div class="reception-card-container reception-details-container">
+        <svg class="reception-couple-motif" viewBox="0 0 160 220" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M56 56c-5-17 6-29 19-29 13 0 22 11 18 27-3 12-10 18-19 18-8 0-15-6-18-16Z"/>
+            <path d="M45 79c11-8 26-9 38-2 8 5 13 15 15 29l4 55H37l5-55c1-12 3-21 3-27Z"/>
+            <path d="M53 88c-9 14-13 30-13 49M82 88c7 15 11 32 12 49M54 161l-4 42M83 161l8 42"/>
+            <path d="M106 67c-3-15 6-26 18-26 12 0 18 11 15 24-2 10-8 15-16 15-8 0-14-5-17-13Z"/>
+            <path d="M101 91c9-8 24-8 34 1 9 8 12 25 13 48l-4 49h-47l3-52c0-22 0-37 1-46Z"/>
+            <path d="M105 105c-8 19-18 28-30 30-10 2-17-1-23-8"/>
+            <path d="M113 140c-5 17-11 34-18 50M138 142l10 47M111 199l-5 10M145 190l8 8"/>
+          </g>
+        </svg>
         <!-- Reception Details Content -->
         <div class="card-details-content">
           <span class="badge-reception" id="receptionSubTitle">An Evening of Celebration & Dinner</span>
           
-          <h3 class="reception-couple-title" id="receptionCoupleNames">Venkatesh & Ananya</h3>
+          <h3 class="reception-couple-title" id="receptionCoupleNames">Akhila & Nikhil</h3>
 
           <p class="event-message" id="receptionMessage">
             Join us for an enchanting evening filled with laughter, music, fine cuisine, and togetherness as we celebrate the newlyweds.
@@ -172,8 +227,9 @@
           <div class="detail-row">
             <i class="far fa-calendar-check" style="color:var(--emerald-reception);" aria-hidden="true"></i>
             <div class="detail-info">
-              <strong id="receptionDate">Friday, December 5, 2026</strong>
-              <span id="receptionTime">07:00 PM onwards</span>
+              <span class="detail-label" data-i18n="dateLabel">Date</span>
+              <strong id="receptionDate">To be announced</strong>
+              <span id="receptionTime">To be announced</span>
             </div>
           </div>
 
@@ -181,26 +237,20 @@
           <div class="detail-row">
             <i class="fas fa-map-marker-alt" style="color:var(--emerald-reception);" aria-hidden="true"></i>
             <div class="detail-info">
-              <strong id="receptionVenueName">The Meridian Banquet</strong>
-              <span id="receptionVenueAddress">Financial District, Gachibowli, Hyderabad, Telangana 500032</span>
+              <span class="detail-label" data-i18n="venueLabel">Venue</span>
+              <strong id="receptionVenueName">To be announced</strong>
+              <span id="receptionVenueAddress">To be announced</span>
             </div>
           </div>
 
-          <!-- Actions: Open Map & Custom Card -->
+          <!-- Action: Open Map -->
           <div class="card-action-bar">
             <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn-luxury btn-map-emerald" id="receptionMapBtn">
-              <i class="fas fa-location-arrow"></i> Open Map
-            </a>
-            <a href="card.html" class="btn-luxury btn-card-designer">
-              <i class="fas fa-paint-brush"></i> Customize Card
+              <i class="fas fa-location-arrow"></i> <span data-i18n="openMap">Open Map</span>
             </a>
           </div>
         </div>
 
-        <!-- Card Illustration: Palace Garden, Florals & Couple Sketch -->
-        <div class="card-illustration-frame" style="border-color: rgba(27,67,46,0.3);">
-          <img src="images/reception_card_clean.jpg" alt="Emerald & Floral Luxury Reception Card Illustration" id="receptionCardImg" loading="lazy">
-        </div>
       </div>
     </div>
   </section>
@@ -211,32 +261,32 @@
   <section class="section countdown-section reveal-on-scroll" id="countdown">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Save The Date</span>
-        <h2 class="section-title">Counting Down To The Celebrations</h2>
+        <span class="section-tag" data-i18n="countdownTag">Save The Date</span>
+        <h2 class="section-title" data-i18n="countdownTitle">Counting Down To The Celebrations</h2>
         <div class="ornamental-divider" style="color:#FFE58F;"><i class="fas fa-hourglass-half"></i></div>
       </div>
 
       <div class="countdown-grid" id="countdownGrid">
         <div class="timer-box">
           <span class="timer-number" id="timerDays">00</span>
-          <span class="timer-label">Days</span>
+          <span class="timer-label" data-i18n="days">Days</span>
         </div>
         <div class="timer-box">
           <span class="timer-number" id="timerHours">00</span>
-          <span class="timer-label">Hours</span>
+          <span class="timer-label" data-i18n="hours">Hours</span>
         </div>
         <div class="timer-box">
           <span class="timer-number" id="timerMinutes">00</span>
-          <span class="timer-label">Minutes</span>
+          <span class="timer-label" data-i18n="minutes">Minutes</span>
         </div>
         <div class="timer-box">
           <span class="timer-number" id="timerSeconds">00</span>
-          <span class="timer-label">Seconds</span>
+          <span class="timer-label" data-i18n="seconds">Seconds</span>
         </div>
       </div>
 
       <p class="countdown-event-note" id="countdownEventNote">
-        Until the Wedding Ceremony on December 04, 2026
+        Wedding ceremony date: Wednesday, 26 August 2026
       </p>
     </div>
   </section>
@@ -248,94 +298,15 @@
     <div class="container">
       <div class="dear-guest-card">
         <div class="sacred-motif" style="font-size:1.8rem; margin-bottom:12px;">🌸</div>
-        <h2 class="guest-greeting-title" id="guestGreetingTitle">Dear Guest</h2>
+        <h2 class="guest-greeting-title" id="guestGreetingTitle" data-i18n="guestTitle">Dear Guest</h2>
         
         <p class="guest-heartfelt-quote" id="guestHeartfeltQuote">
           "Your presence, blessings and love will make our celebration truly complete. Having you with us on this momentous occasion means the world to our family."
         </p>
 
-        <h3 class="guest-couple-signature" id="guestCoupleSignature">Venkatesh & Ananya</h3>
-        <p class="guest-family-closing" id="guestFamilyClosing">With love and best compliments from both the families.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       SECTION 6: RSVP EXPERIENCE
-       ========================================================================= -->
-  <section class="section rsvp-section reveal-on-scroll" id="rsvp">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Confirm Attendance</span>
-        <h2 class="section-title">RSVP</h2>
-        <div class="ornamental-divider"><i class="fas fa-envelope-open-text"></i></div>
-        <p style="color:var(--text-secondary); margin-top:10px; font-size:0.95rem;">
-          Please let us know if you can make it so we can welcome you with warmth and hospitality.
-        </p>
-      </div>
-
-      <div class="rsvp-box-container">
-        <form id="weddingRsvpForm" class="rsvp-form" novalidate onsubmit="handleRsvpFormSubmit(event)">
-          <!-- Guest Name Field -->
-          <div class="form-field" id="fieldGuestName">
-            <label for="rsvpName">Your Full Name <span style="color:#B91C1C;">*</span></label>
-            <input type="text" id="rsvpName" name="guestName" placeholder="e.g. Ramesh Kumar" required autocomplete="name">
-            <span class="error-hint" id="errorGuestName">Please enter your name.</span>
-          </div>
-
-          <!-- Attendance Option Field -->
-          <div class="form-field" id="fieldAttendance">
-            <label for="rsvpAttendance">Will you be attending? <span style="color:#B91C1C;">*</span></label>
-            <select id="rsvpAttendance" name="attendance" required>
-              <option value="" disabled selected>Select an option</option>
-              <option value="Joyfully attending both Wedding & Reception">Joyfully attending both Wedding & Reception 🎉</option>
-              <option value="Attending Wedding Ceremony only (Dec 4)">Attending Wedding Ceremony only (Dec 4) 💍</option>
-              <option value="Attending Wedding Reception only (Dec 5)">Attending Wedding Reception only (Dec 5) 🥂</option>
-              <option value="Regretfully unable to attend, sending warm blessings">Regretfully unable to attend, sending warm blessings ❤️</option>
-            </select>
-            <span class="error-hint" id="errorAttendance">Please select your attendance status.</span>
-          </div>
-
-          <!-- Attendees Count Field -->
-          <div class="form-field" id="fieldAttendees">
-            <label for="rsvpCount">Number of Attendees</label>
-            <input type="number" id="rsvpCount" name="attendees" min="1" max="10" value="1">
-            <span class="error-hint" id="errorAttendees">Please enter a valid count (1 - 10).</span>
-          </div>
-
-          <!-- Warm Wishes (Optional) -->
-          <div class="form-field">
-            <label for="rsvpWishes">Wishes or Blessings for the Couple (Optional)</label>
-            <textarea id="rsvpWishes" name="wishes" rows="2" placeholder="Write a warm note..."></textarea>
-          </div>
-
-          <!-- RSVP Submit Buttons -->
-          <div class="rsvp-actions">
-            <button type="submit" class="btn-confirm-rsvp">
-              <i class="fas fa-check-circle"></i> Confirm RSVP
-            </button>
-            <button type="button" class="btn-whatsapp-direct" onclick="submitViaWhatsApp()">
-              <i class="fab fa-whatsapp"></i> Confirm Directly via WhatsApp
-            </button>
-          </div>
-        </form>
-
-        <!-- Dynamic Confirmation Banner (No fake backend claim) -->
-        <div class="rsvp-feedback-banner" id="rsvpFeedbackBanner">
-          <i class="fas fa-heart" style="font-size:1.8rem; margin-bottom:8px; display:inline-block;"></i>
-          <h4 style="font-family:'Playfair Display', serif; font-size:1.3rem;">Thank You!</h4>
-          <p id="rsvpFeedbackMessage" style="margin-top:6px; font-size:0.95rem;">
-            Your response has been noted. We look forward to celebrating with you!
-          </p>
-        </div>
-
-        <!-- Contact Helpers -->
-        <div class="contact-helpers" id="contactHelpers">
-          <p>For any queries or travel assistance, feel free to contact:</p>
-          <p style="margin-top:6px;" id="contactPersonList">
-            <strong>Kandibanda Family:</strong> <a href="tel:+919876543210">+91 98765 43210</a>
-          </p>
-        </div>
+        <h3 class="guest-couple-signature" id="guestCoupleSignature">Akhila & Nikhil</h3>
+        <p class="guest-family-closing" id="guestFamilyClosing" data-i18n="invitationByHeading">With Love and Blessings</p>
+        <ul class="invitation-by-list" id="invitationByList"></ul>
       </div>
     </div>
   </section>
@@ -345,25 +316,20 @@
        ========================================================================= -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-hashtag" id="footerHashtag">#VenkyWedsAnu</div>
+      <div class="footer-hashtag" id="footerHashtag">#AkhilaWedsNikhil</div>
       <p style="font-family:'Playfair Display', serif; font-size:1.15rem; color:#fff;">
-        Venkatesh & Ananya
+        Akhila & Nikhil
       </p>
       
-      <p style="margin-top:8px;">
-        <a href="card.html" class="footer-card-designer-link">
-          <i class="fas fa-magic"></i> Open WhatsApp Card Designer (Dec 4 & Dec 5)
-        </a>
-      </p>
-
       <p class="footer-copy">
-        Crafted with love for the wedding celebrations &bull; December 2026
+        <span id="footerCopy" data-i18n="footerCopy">Crafted with love for the wedding celebrations &bull; August 2026</span>
       </p>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="config.js"></script>
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

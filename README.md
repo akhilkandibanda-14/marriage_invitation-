@@ -1,154 +1,61 @@
-# 💍 Luxury Digital Wedding & Reception Invitation Website
+# Luxury Wedding & Reception Invitation
 
-A mobile-first, luxury digital wedding invitation and reception experience created for **Venkatesh Reddy & Ananya Reddy**.
+A mobile-first digital wedding invitation for **Akhila & Nikhil**, styled as a South Indian temple-heritage experience with warm ivory, sandalwood, antique gold, traditional maroon, copper, and emerald accents.
 
-Inspired by royal Indian wedding heritage and modern luxury aesthetics with an ivory, blush rose, sage green, and champagne gold palette.
+## Included experience
 
----
+- Opening invitation cover with Om motif, Sanskrit blessing, couple names, date, and reveal button
+- Wedding ceremony and reception sections with finalized invitation artwork
+- Configured venue details with Google Maps actions
+- A clearly marked non-live wedding date display because the configured wedding date has passed
+- Dear Guest message
+- Subtle jasmine/gold ambient motifs with reduced-motion support
+- User-triggered ambient instrumental music with a floating toggle
+- Responsive layouts for mobile, tablet, and desktop
+- Temple-inspired borders, mango-leaf toranam details, kolam diamonds, and restrained jasmine/gold motion
+- Light romantic reception treatment with an inline, low-opacity couple line-art motif
+- Ivory/champagne countdown cards with emerald numerals and refined entrance transitions
+- Original supplied wedding and reception template artwork is preserved as local image assets
+- Wedding template text is rendered separately from `config.js`, with a downloadable composite card
+- Supplied couple and family photographs are used as responsive invitation highlights
+- English, Telugu, and Hindi translations with a persistent language selector
+- Locale-aware weekday/date formatting and Telugu/Devanagari font support
 
-## 🌟 Key Features & Structure
+RSVP forms, phone numbers, WhatsApp actions, card customization, and public card-editing controls have been removed. The invitation displays fixed event information from `config.js`.
 
-1. **Cover & Welcome Reveal (`#cover`)**:
-   - Full-screen invitation envelope with royal calligraphy headings.
-   - Sacred Shloka & Om motif.
-   - Smooth **"Open Invitation"** transition into the celebration schedule.
+## Configuration
 
-2. **Wedding Ceremony Section (`#wedding`)**:
-   - Features the sacred Muhurtham details for **Thursday, December 4, 2026**.
-   - Traditional South Indian temple Gopuram, Kalash, and Mangalsutra (Thali) illustration.
-   - Direct **"Open Map"** button navigating to the wedding venue.
-   - Quick link to the custom WhatsApp card designer.
+`config.js` is the single source of truth for couple names, parent details, invitation-by families, event dates, times, venues, map links, guest messaging, and music settings. The wedding date is configured as **Wednesday, 26 August 2026**, at **Srinivasa Gardens, Thorrur**. Its live countdown is intentionally disabled because that date has passed.
 
-3. **Reception Invitation Section (`#reception`)**:
-   - Dedicated luxury reception section for **Friday, December 5, 2026**.
-   - Emerald green, white magnolia florals, and palace garden illustration.
-   - Direct **"Open Map"** button for the reception banquet.
+Reception fields remain unconfigured until actual reception details are supplied; the reception design and editable structure are retained.
 
-4. **Live Event Countdown (`#countdown`)**:
-   - Live Days, Hours, Minutes, and Seconds countdown timer.
-   - Automatically bound to the ISO date in `config.js`.
-   - Handles missing or past dates gracefully ("To be announced" / "Celebrations Begun").
+Translations are centralized in `translations.js`. English is the first-visit default; a visitor's selected language is stored in browser local storage and falls back to English if a translation is unavailable. Names, venue names, addresses, map URLs, and configured numerical event details remain unchanged.
 
-5. **"Dear Guest" Section (`#guest`)**:
-   - Heartfelt, personalized message of gratitude and blessings for every visiting family member and friend.
+The layout uses a wide centered desktop container, two-column invitation cards above 900px, balanced tablet behavior, and stacked mobile cards below 900px. The language selector remains in the sticky navigation and stays within the mobile safe area.
 
-6. **RSVP Flow (`#rsvp`)**:
-   - Client-side validated form collecting Guest Name, Attendance choice, and Attendee Count.
-   - Inline real-time validation without fake backend claims.
-   - Dual action: Immediate local feedback confirmation + 1-click **Confirm Directly via WhatsApp** button.
+## Run locally
 
-7. **WhatsApp Card Designer (`card.html`)**:
-   - Built-in generator with 2-in-1 tabs for **Marriage (Dec 4)** and **Reception (Dec 5)** cards.
-   - Multilingual presets (English, Telugu, Hindi).
-   - High-definition 1-click `.jpg` image download ready to forward on WhatsApp!
+### Direct browser
 
-8. **Aesthetic Enhancements & Accessibility**:
-   - Ambient sitar/flute instrumental background audio with persistent toggle.
-   - Floating rose and blush flower petals with native canvas animation.
-   - Fully supports `@media (prefers-reduced-motion: reduce)`.
-   - Accessible ARIA labels and semantic HTML5.
+Open `index.html` in a browser.
 
----
+### Local HTTP server
 
-## ⚙️ Centralized Configuration (`config.js`)
-
-All event details are centralized in **`config.js`**. Update names, dates, venues, map links, and WhatsApp phone numbers in one place:
-
-```javascript
-const WEDDING_CONFIG = {
-  couple: {
-    groom: {
-      fullName: "Venkatesh Reddy",
-      shortName: "Venkatesh",
-      fatherName: "Sri Father's Name",
-      motherName: "Smt. Mother's Name"
-    },
-    bride: {
-      fullName: "Ananya Reddy",
-      shortName: "Ananya",
-      fatherName: "Sri Bride's Father",
-      motherName: "Smt. Bride's Mother"
-    },
-    hashtag: "#VenkyWedsAnu"
-  },
-  events: {
-    wedding: {
-      dateFormatted: "Thursday, December 4, 2026",
-      timeFormatted: "Muhurtham: 09:30 AM onwards",
-      targetDateISO: "2026-12-04T09:30:00+05:30",
-      venueName: "Sri Raja Rajeshwari Kalyana Mandapam",
-      venueAddress: "Plot No. 12, Temple Road, Jubilee Hills, Hyderabad, Telangana",
-      googleMapsUrl: "https://maps.google.com/?q=Jubilee+Hills+Hyderabad"
-    },
-    reception: {
-      dateFormatted: "Friday, December 5, 2026",
-      timeFormatted: "07:00 PM onwards",
-      targetDateISO: "2026-12-05T19:00:00+05:30",
-      venueName: "The Meridian Banquet",
-      venueAddress: "Financial District, Gachibowli, Hyderabad, Telangana",
-      googleMapsUrl: "https://maps.google.com/?q=Gachibowli+Hyderabad"
-    }
-  },
-  rsvp: {
-    whatsappNumber: "919876543210" // Number to receive RSVP confirmations
-  }
-};
-```
-
----
-
-## 🚀 How to Run Locally
-
-### Option 1: Direct Open in Browser (No Server Needed)
-Simply double-click **`index.html`** or in PowerShell:
-```powershell
-start index.html
-```
-
-### Option 2: Local HTTP Server (Python)
 ```powershell
 python -m http.server 8000
 ```
-Then visit: `http://localhost:8000`
 
-### Option 3: Local HTTP Server (Node.js)
-```powershell
-npx serve .
+Then open `http://localhost:8000`.
+
+## Project files
+
+```text
+index.html        Main invitation page
+style.css         Theme, responsive layout, and animations
+script.js         Data binding, countdown, audio, petals, and scroll effects
+config.js         Centralized event configuration
+translations.js   English, Telugu, and Hindi language strings
+images/           Final wedding and reception artwork
 ```
 
----
-
-## 🌐 How to Deploy (GitHub Pages / Free Hosting)
-
-### 1. Push to GitHub
-```powershell
-git add .
-git commit -m "feat: Luxury digital wedding & reception invitation website"
-git branch -M main
-git remote set-url origin https://github.com/akhilkandibanda-14/marriage_invitation-.git
-git push -u origin main
-```
-
-### 2. Enable GitHub Pages (Free Instant Hosting)
-1. Go to your GitHub repository: `https://github.com/akhilkandibanda-14/marriage_invitation-`
-2. Click **Settings** > **Pages** (in the left sidebar).
-3. Under **Branch**, select `main` and folder `/ (root)`, then click **Save**.
-4. Within 1-2 minutes, your wedding invitation will be live at:
-   `https://akhilkandibanda-14.github.io/marriage_invitation-/`
-
----
-
-## 📁 File Structure
-```
-c:\mariiage invitation\
-├── index.html        # Main luxury digital wedding & reception website
-├── style.css         # Responsive styling, color tokens, animations & print media
-├── script.js         # Interactive engine (Countdown, Audio, RSVP, Canvas Petals)
-├── config.js         # Centralized customizable configuration
-├── card.html         # WhatsApp Wedding & Reception card generator
-├── README.md         # Documentation & deployment guide
-└── images/
-    ├── marriage_card.jpg           # Temple Gopuram & Kalash wedding card template
-    ├── reception_card_clean.jpg    # Emerald luxury floral & palace reception template
-    └── reception_card_original.jpg # Cropped source image
-```
+No build step or external package installation is required.

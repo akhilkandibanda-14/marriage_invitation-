@@ -1,37 +1,76 @@
 /* ==========================================================================
    LUXURY DIGITAL WEDDING & RECEPTION INVITATION
-   Palette: Ivory, Pearl White, Dusty Rose, Blush Pink, Sage Green, Champagne Gold
+   Palette: South Indian temple maroon, antique gold, warm ivory, sandalwood, emerald
    ========================================================================== */
 
 :root {
   /* Primary Regal Palette */
-  --bg-ivory: #FDFBF7;
-  --bg-pearl: #FAF6F0;
-  --bg-card: #FFFFFF;
-  --bg-blush: #FBF4F4;
+  --bg-ivory: #F7F0DF;
+  --bg-pearl: #EFE3C9;
+  --bg-card: #FFFDF7;
+  --bg-blush: #F1E4CE;
 
-  --gold-primary: #C5A059;
-  --gold-light: #F3E5AB;
-  --gold-dark: #8C6A23;
-  --gold-gradient: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #9C782B 100%);
-  --gold-glow: rgba(197, 160, 89, 0.28);
+  --gold-primary: #C49A43;
+  --gold-light: #E8CA82;
+  --gold-dark: #806021;
+  --gold-gradient: linear-gradient(135deg, #E8CA82 0%, #C49A43 52%, #8D6825 100%);
+  --gold-glow: rgba(196, 154, 67, 0.28);
   
-  --dusty-rose: #C47D86;
-  --rose-light: #F9EBEF;
-  --rose-dark: #873845;
+  --dusty-rose: #B66B40;
+  --rose-light: #F0DDCA;
+  --rose-dark: #701D25;
   
-  --sage-green: #526E58;
-  --sage-light: #EBF1EC;
-  --emerald-reception: #1B432E;
+  --sage-green: #55745D;
+  --sage-light: #E1E9DD;
+  --emerald-reception: #245B60;
 
-  --text-primary: #2C2224;
-  --text-secondary: #5C4F51;
-  --text-muted: #8A7B7E;
+  --text-primary: #3A2924;
+  --text-secondary: #624D42;
+  --text-muted: #8A7567;
   
-  --border-gold: rgba(197, 160, 89, 0.4);
+  --border-gold: rgba(196, 154, 67, 0.52);
   --border-radius: 20px;
-  --shadow-luxury: 0 16px 40px rgba(135, 56, 69, 0.08), 0 4px 12px rgba(197, 160, 89, 0.12);
+  --shadow-luxury: 0 16px 40px rgba(112, 29, 37, 0.1), 0 4px 12px rgba(196, 154, 67, 0.16);
   --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.language-selector {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.language-selector select {
+  appearance: none;
+  min-width: 116px;
+  padding: 8px 30px 8px 12px;
+  border: 1px solid var(--gold-primary);
+  border-radius: 4px;
+  color: var(--rose-dark);
+  background:
+    linear-gradient(45deg, transparent 50%, var(--gold-dark) 50%) calc(100% - 15px) 50% / 5px 5px no-repeat,
+    linear-gradient(135deg, var(--gold-dark) 50%, transparent 50%) calc(100% - 11px) 50% / 5px 5px no-repeat,
+    var(--bg-card);
+  font: 600 0.75rem 'Montserrat', sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.language-selector select:hover,
+.language-selector select:focus {
+  background-color: var(--rose-light);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Reset & Box Sizing */
@@ -39,6 +78,16 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.detail-label {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--gold-dark);
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
 html {
@@ -50,15 +99,828 @@ html {
   overflow-x: hidden;
 }
 
+.language-selector select {
+  min-width: 104px;
+  padding: 8px 26px 8px 9px;
+  font-size: 0.7rem;
+}
+
 body {
   min-height: 100vh;
   position: relative;
   line-height: 1.6;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(249, 235, 239, 0.4) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(235, 241, 236, 0.4) 0%, transparent 40%),
-    linear-gradient(180deg, #FFFFFF 0%, #FDFBF7 100%);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(196, 154, 67, 0.08) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 88% 82%, rgba(112, 29, 37, 0.05) 0 1px, transparent 1.5px),
+    linear-gradient(180deg, #FFFDF7 0%, #F7F0DF 100%);
+  background-size: 24px 24px, 30px 30px, auto;
   overflow-x: hidden;
+}
+
+html:lang(te) body,
+html:lang(te) button,
+html:lang(te) select {
+  font-family: 'Noto Sans Telugu', 'Montserrat', sans-serif;
+}
+
+html:lang(hi) body,
+html:lang(hi) button,
+html:lang(hi) select {
+  font-family: 'Noto Sans Devanagari', 'Montserrat', sans-serif;
+}
+
+html:lang(te) .cover-couple-names,
+html:lang(hi) .cover-couple-names,
+html:lang(te) .couple-title-inline,
+html:lang(hi) .couple-title-inline,
+html:lang(te) .reception-couple-title,
+html:lang(hi) .reception-couple-title {
+  font-family: 'Great Vibes', 'Noto Sans Telugu', 'Noto Sans Devanagari', cursive;
+}
+
+@media (min-width: 1280px) {
+  .section {
+    padding: 110px 0;
+  }
+
+  /* ==========================================================================
+     FINAL PREMIUM COMPOSITION
+     ========================================================================== */
+  .cover-card-envelope {
+    box-shadow:
+      0 24px 70px rgba(112, 29, 37, 0.18),
+      0 0 34px rgba(196, 154, 67, 0.16),
+      inset 0 0 0 1px rgba(196, 154, 67, 0.42),
+      inset 0 0 0 8px rgba(196, 154, 67, 0.08);
+  }
+
+  .cover-floral-crest {
+    animation: crestReveal 1.2s ease both;
+  }
+
+  .cover-couple-names > span {
+    animation: nameReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .cover-couple-names > span:nth-child(1) { animation-delay: 0.22s; }
+  .cover-couple-names > span:nth-child(2) { animation-delay: 0.34s; }
+  .cover-couple-names > span:nth-child(3) { animation-delay: 0.46s; }
+
+  .btn-open-invitation {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .btn-open-invitation::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 -45%;
+    width: 28%;
+    transform: skewX(-20deg);
+    background: rgba(255, 255, 255, 0.34);
+    animation: buttonSweep 4.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .wedding-section::after,
+  .reception-section::after,
+  .countdown-section::after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    opacity: 0.55;
+  }
+
+  .card-illustration-frame {
+    box-shadow: 0 14px 34px rgba(112, 29, 37, 0.13), 0 0 24px rgba(196, 154, 67, 0.12);
+  }
+
+  .wedding-section .card-illustration-frame {
+    animation: artworkFloatIn 1s 0.12s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .reception-section {
+    background:
+      radial-gradient(circle at 84% 18%, rgba(196, 154, 67, 0.16), transparent 23%),
+      radial-gradient(circle at 12% 72%, rgba(233, 220, 197, 0.55), transparent 34%),
+      linear-gradient(135deg, #F7F0DF 0%, #FFFDF8 52%, #E9DCC5 100%);
+  }
+
+  .reception-card-container {
+    background: rgba(255, 253, 248, 0.88);
+    border-color: rgba(196, 154, 67, 0.55);
+    box-shadow: 0 20px 52px rgba(112, 29, 37, 0.1), inset 0 0 0 6px rgba(196, 154, 67, 0.06);
+  }
+
+  .reception-couple-motif {
+    position: absolute;
+    right: 2.5%;
+    top: 4%;
+    width: clamp(72px, 11vw, 128px);
+    height: auto;
+    color: var(--gold-primary);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+    animation: motifBreath 6s ease-in-out infinite;
+  }
+
+  .reception-card-container > *:not(.reception-couple-motif) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .reception-section .card-illustration-frame {
+    border-color: rgba(196, 154, 67, 0.6) !important;
+    box-shadow: 0 14px 34px rgba(49, 91, 67, 0.1);
+  }
+
+  .countdown-section {
+    background:
+      radial-gradient(circle at 50% 0, rgba(196, 154, 67, 0.18), transparent 38%),
+      linear-gradient(135deg, #F7F0DF 0%, #FFFDF8 48%, #E9DCC5 100%);
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-gold);
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .countdown-section .section-title,
+  .countdown-section .section-tag {
+    color: var(--rose-dark);
+  }
+
+  .countdown-section .ornamental-divider {
+    color: var(--gold-dark) !important;
+  }
+
+  .timer-box {
+    background: rgba(255, 253, 248, 0.8);
+    border-color: rgba(196, 154, 67, 0.58);
+    box-shadow: 0 10px 24px rgba(112, 29, 37, 0.1), inset 0 0 0 1px rgba(255,255,255,0.7);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .timer-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(112, 29, 37, 0.14), 0 0 18px rgba(196, 154, 67, 0.2);
+  }
+
+  .timer-box .timer-number {
+    color: var(--emerald-reception);
+    text-shadow: 0 0 12px rgba(49, 91, 67, 0.14);
+  }
+
+  .timer-box .timer-label,
+  .countdown-event-note {
+    color: var(--text-secondary);
+  }
+
+  .dear-guest-section {
+    background:
+      radial-gradient(circle at 50% 0, rgba(196, 154, 67, 0.1), transparent 35%),
+      var(--bg-ivory);
+  }
+
+  .dear-guest-card {
+    border-radius: 8px;
+    box-shadow: 0 18px 46px rgba(112, 29, 37, 0.1), inset 0 0 0 6px rgba(196, 154, 67, 0.06);
+  }
+
+  @keyframes crestReveal {
+    from { opacity: 0; transform: translateY(-12px) scale(0.94); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes nameReveal {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes buttonSweep {
+    0%, 62% { left: -45%; }
+    84%, 100% { left: 125%; }
+  }
+
+  @keyframes artworkFloatIn {
+    from { opacity: 0; transform: translateX(-18px) scale(0.98); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+  }
+
+  @keyframes motifBreath {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-5px) rotate(1deg); }
+  }
+
+  @media (max-width: 900px) {
+    .reception-couple-motif {
+      top: 1.5%;
+      right: 3%;
+      width: 76px;
+    }
+
+    .reception-card-container {
+      padding-top: 28px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .section {
+      padding: 68px 0;
+    }
+
+    .reception-couple-motif {
+      width: 60px;
+      opacity: 0.1;
+    }
+
+    .reception-card-container {
+      gap: 20px;
+    }
+
+    .reception-section .card-illustration-frame {
+      max-width: 88%;
+      margin: 0 auto;
+    }
+
+    .countdown-section {
+      padding: 68px 16px;
+    }
+
+    .countdown-grid {
+      gap: 10px;
+    }
+
+    .timer-box {
+      min-width: 72px;
+      padding: 13px 10px;
+    }
+  }
+
+  /* Original supplied wedding template: artwork remains the image; only the
+     blank parchment center receives editable HTML text. */
+  .wedding-template-frame {
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: 0 18px 38px rgba(62, 29, 11, 0.22);
+  }
+
+  .wedding-template-card {
+    position: relative;
+    width: 100%;
+    line-height: 1.15;
+  }
+
+  .wedding-template-card > img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .wedding-template-copy {
+    position: absolute;
+    inset: 14% 14% 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(3px, 0.5vw, 7px);
+    overflow: hidden;
+    text-align: center;
+    color: #701D25;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .template-sacred-om {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: clamp(1.05rem, 2.4vw, 2rem);
+    font-weight: 600;
+  }
+
+  .template-sacred-blessing {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: clamp(0.58rem, 1.35vw, 1rem);
+    font-weight: 600;
+  }
+
+  .template-salutation {
+    margin-top: 2%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.38rem, 0.75vw, 0.64rem);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .template-couple-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(1.05rem, 3vw, 2.35rem);
+    line-height: 1;
+    max-width: 100%;
+  }
+
+  .template-message {
+    max-width: 92%;
+    font-size: clamp(0.48rem, 1.05vw, 0.84rem);
+    line-height: 1.08;
+  }
+
+  .template-date,
+  .template-time,
+  .template-venue,
+  .template-address {
+    max-width: 96%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.42rem, 0.85vw, 0.68rem);
+    line-height: 1.1;
+  }
+
+  .template-date {
+    margin-top: 2%;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.53rem, 1.05vw, 0.82rem);
+    font-weight: 600;
+  }
+
+  .template-venue {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+
+  .template-address {
+    max-width: 90%;
+    font-size: clamp(0.36rem, 0.7vw, 0.56rem);
+  }
+
+  .btn-download-card {
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  @media (max-width: 900px) {
+    .wedding-template-copy {
+      inset: 14% 13% 38%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .wedding-template-copy {
+      inset: 15% 13% 38%;
+      gap: 2px;
+    }
+
+    .template-message {
+      max-width: 94%;
+    }
+
+    .template-address {
+      max-width: 94%;
+    }
+
+    .card-action-bar {
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cover-floral-crest,
+    .cover-couple-names > span,
+    .btn-open-invitation::after,
+    .wedding-section .card-illustration-frame,
+    .reception-couple-motif {
+      animation: none !important;
+    }
+  }
+
+  /* Final cascade for the premium light reception and countdown surfaces. */
+  .reception-section {
+    background:
+      radial-gradient(circle at 84% 18%, rgba(196, 154, 67, 0.16), transparent 23%),
+      radial-gradient(circle at 12% 72%, rgba(233, 220, 197, 0.55), transparent 34%),
+      linear-gradient(135deg, #F7F0DF 0%, #FFFDF8 52%, #E9DCC5 100%);
+  }
+
+  .reception-card-container {
+    background: rgba(255, 253, 248, 0.88);
+    border-color: rgba(196, 154, 67, 0.55);
+    box-shadow: 0 20px 52px rgba(112, 29, 37, 0.1), inset 0 0 0 6px rgba(196, 154, 67, 0.06);
+  }
+
+  .reception-couple-motif {
+    position: absolute;
+    right: 2.5%;
+    top: 4%;
+    width: clamp(72px, 11vw, 128px);
+    height: auto;
+    color: var(--gold-primary);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+    animation: motifBreath 6s ease-in-out infinite;
+  }
+
+  .reception-card-container > *:not(.reception-couple-motif) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .reception-section .card-illustration-frame {
+    border-color: rgba(196, 154, 67, 0.6) !important;
+    box-shadow: 0 14px 34px rgba(49, 91, 67, 0.1);
+  }
+
+  .countdown-section {
+    background:
+      radial-gradient(circle at 50% 0, rgba(196, 154, 67, 0.18), transparent 38%),
+      linear-gradient(135deg, #F7F0DF 0%, #FFFDF8 48%, #E9DCC5 100%);
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-gold);
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .countdown-section .section-title,
+  .countdown-section .section-tag {
+    color: var(--rose-dark);
+  }
+
+  .countdown-section .ornamental-divider {
+    color: var(--gold-dark) !important;
+  }
+
+  .timer-box {
+    background: rgba(255, 253, 248, 0.8);
+    border-color: rgba(196, 154, 67, 0.58);
+    box-shadow: 0 10px 24px rgba(112, 29, 37, 0.1), inset 0 0 0 1px rgba(255,255,255,0.7);
+  }
+
+  .timer-box .timer-number {
+    color: var(--emerald-reception);
+    text-shadow: 0 0 12px rgba(49, 91, 67, 0.14);
+  }
+
+  .timer-box .timer-label,
+  .countdown-event-note {
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 900px) {
+    .reception-couple-motif {
+      top: 1.5%;
+      right: 3%;
+      width: 76px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .reception-couple-motif {
+      width: 60px;
+      opacity: 0.1;
+    }
+
+    .reception-card-container {
+      gap: 20px;
+    }
+
+    .reception-section .card-illustration-frame {
+      max-width: 88%;
+      margin: 0 auto;
+    }
+
+    .countdown-section {
+      padding: 68px 16px;
+    }
+  }
+
+  /* Ensure the original wedding template styles apply at every viewport. */
+  .wedding-template-frame {
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: 0 18px 38px rgba(62, 29, 11, 0.22);
+  }
+
+  .wedding-template-card {
+    position: relative;
+    width: 100%;
+    line-height: 1.15;
+  }
+
+  .wedding-template-card > img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .wedding-template-copy {
+    position: absolute;
+    inset: 14% 14% 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(3px, 0.5vw, 7px);
+    overflow: hidden;
+    color: #701D25;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .template-sacred-om {
+    font: 600 clamp(1.05rem, 2.4vw, 2rem) 'Noto Serif Telugu', serif;
+  }
+
+  .template-sacred-blessing {
+    font: 600 clamp(0.58rem, 1.35vw, 1rem) 'Noto Serif Telugu', serif;
+  }
+
+  .template-salutation {
+    margin-top: 2%;
+    font: 600 clamp(0.38rem, 0.75vw, 0.64rem) 'Montserrat', sans-serif;
+    letter-spacing: 0.08em;
+  }
+
+  .template-couple-names {
+    max-width: 100%;
+    font: clamp(1.05rem, 3vw, 2.35rem) 'Great Vibes', cursive;
+    line-height: 1;
+  }
+
+  .template-message {
+    max-width: 92%;
+    font-size: clamp(0.48rem, 1.05vw, 0.84rem);
+    line-height: 1.08;
+  }
+
+  .template-date,
+  .template-time,
+  .template-venue,
+  .template-address {
+    max-width: 96%;
+    font: clamp(0.42rem, 0.85vw, 0.68rem) 'Montserrat', sans-serif;
+    line-height: 1.1;
+  }
+
+  .template-date {
+    margin-top: 2%;
+    font: 600 clamp(0.53rem, 1.05vw, 0.82rem) 'Playfair Display', serif;
+  }
+
+  .template-venue {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+
+  .template-address {
+    max-width: 90%;
+    font-size: clamp(0.36rem, 0.7vw, 0.56rem);
+  }
+
+  .btn-download-card {
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  @media (max-width: 600px) {
+    .wedding-template-copy {
+      inset: 15% 13% 38%;
+      gap: 2px;
+    }
+
+    .template-message,
+    .template-address {
+      max-width: 94%;
+    }
+
+    .card-action-bar {
+      flex-wrap: wrap;
+    }
+  }
+
+  /* Original supplied wedding template card. */
+  .wedding-template-frame {
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: 0 18px 38px rgba(62, 29, 11, 0.22);
+  }
+
+  .wedding-template-card {
+    position: relative;
+    width: 100%;
+    line-height: 1.15;
+  }
+
+  .wedding-template-card > img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .wedding-template-copy {
+    position: absolute;
+    inset: 14% 14% 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(3px, 0.5vw, 7px);
+    overflow: hidden;
+    color: #701D25;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .template-sacred-om {
+    font: 600 clamp(1.05rem, 2.4vw, 2rem) 'Noto Serif Telugu', serif;
+  }
+
+  .template-sacred-blessing {
+    font: 600 clamp(0.58rem, 1.35vw, 1rem) 'Noto Serif Telugu', serif;
+  }
+
+  .template-salutation {
+    margin-top: 2%;
+    font: 600 clamp(0.38rem, 0.75vw, 0.64rem) 'Montserrat', sans-serif;
+    letter-spacing: 0.08em;
+  }
+
+  .template-couple-names {
+    max-width: 100%;
+    font: clamp(1.05rem, 3vw, 2.35rem) 'Great Vibes', cursive;
+    line-height: 1;
+  }
+
+  .template-message {
+    max-width: 92%;
+    font-size: clamp(0.48rem, 1.05vw, 0.84rem);
+    line-height: 1.08;
+  }
+
+  .template-date,
+  .template-time,
+  .template-venue,
+  .template-address {
+    max-width: 96%;
+    font: clamp(0.42rem, 0.85vw, 0.68rem) 'Montserrat', sans-serif;
+    line-height: 1.1;
+  }
+
+  .template-date {
+    margin-top: 2%;
+    font: 600 clamp(0.53rem, 1.05vw, 0.82rem) 'Playfair Display', serif;
+  }
+
+  .template-venue {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+
+  .template-address {
+    max-width: 90%;
+    font-size: clamp(0.36rem, 0.7vw, 0.56rem);
+  }
+
+  .btn-download-card {
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  @media (max-width: 600px) {
+    .wedding-template-copy {
+      inset: 15% 13% 38%;
+      gap: 2px;
+    }
+
+    .template-message,
+    .template-address {
+      max-width: 94%;
+    }
+
+    .card-action-bar {
+      flex-wrap: wrap;
+    }
+  }
+
+  /* Original supplied wedding template card. */
+  .wedding-template-frame {
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: 0 18px 38px rgba(62, 29, 11, 0.22);
+  }
+
+  .wedding-template-card {
+    position: relative;
+    width: 100%;
+    line-height: 1.15;
+  }
+
+  .wedding-template-card > img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .wedding-template-copy {
+    position: absolute;
+    inset: 14% 14% 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(3px, 0.5vw, 7px);
+    overflow: hidden;
+    color: #701D25;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .template-sacred-om {
+    font: 600 clamp(1.05rem, 2.4vw, 2rem) 'Noto Serif Telugu', serif;
+  }
+
+  .template-sacred-blessing {
+    font: 600 clamp(0.58rem, 1.35vw, 1rem) 'Noto Serif Telugu', serif;
+  }
+
+  .template-salutation {
+    margin-top: 2%;
+    font: 600 clamp(0.38rem, 0.75vw, 0.64rem) 'Montserrat', sans-serif;
+    letter-spacing: 0.08em;
+  }
+
+  .template-couple-names {
+    max-width: 100%;
+    font: clamp(1.05rem, 3vw, 2.35rem) 'Great Vibes', cursive;
+    line-height: 1;
+  }
+
+  .template-message {
+    max-width: 92%;
+    font-size: clamp(0.48rem, 1.05vw, 0.84rem);
+    line-height: 1.08;
+  }
+
+  .template-date,
+  .template-time,
+  .template-venue,
+  .template-address {
+    max-width: 96%;
+    font: clamp(0.42rem, 0.85vw, 0.68rem) 'Montserrat', sans-serif;
+    line-height: 1.1;
+  }
+
+  .template-date {
+    margin-top: 2%;
+    font: 600 clamp(0.53rem, 1.05vw, 0.82rem) 'Playfair Display', serif;
+  }
+
+  .template-venue {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+
+  .template-address {
+    max-width: 90%;
+    font-size: clamp(0.36rem, 0.7vw, 0.56rem);
+  }
+
+  .btn-download-card {
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  @media (max-width: 600px) {
+    .wedding-template-copy {
+      inset: 15% 13% 38%;
+      gap: 2px;
+    }
+
+    .template-message,
+    .template-address {
+      max-width: 94%;
+    }
+
+    .card-action-bar {
+      flex-wrap: wrap;
+    }
+  }
+
+  .invitation-card-container,
+  .reception-card-container {
+    gap: 64px;
+    padding: 54px;
+  }
+
+  .card-details-content {
+    gap: 24px;
+  }
 }
 
 /* Reduced Motion Support */
@@ -76,7 +938,7 @@ body {
 
 /* Container */
 .container {
-  max-width: 1080px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -96,13 +958,13 @@ body {
 
 .music-toggle-btn {
   position: fixed;
-  bottom: 24px;
-  left: 24px;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  left: max(16px, env(safe-area-inset-left));
   z-index: 100;
   background: var(--bg-card);
   border: 1.5px solid var(--gold-primary);
   color: var(--text-primary);
-  padding: 10px 18px;
+  padding: 10px 16px;
   border-radius: 50px;
   display: flex;
   align-items: center;
@@ -149,7 +1011,7 @@ body {
   padding: 60px 20px;
   background: 
     radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.95) 0%, rgba(250, 244, 240, 0.96) 100%),
-    url('images/reception_card_clean.jpg') center/cover no-repeat;
+    url('images/image.png') center/cover no-repeat;
   overflow: hidden;
   border-bottom: 2px solid var(--border-gold);
 }
@@ -161,7 +1023,7 @@ body {
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
   border-radius: 28px;
-  padding: 60px 36px;
+  padding: clamp(42px, 7vw, 60px) clamp(20px, 5vw, 36px);
   box-shadow: 
     0 24px 60px rgba(135, 56, 69, 0.12),
     0 0 0 1px rgba(255, 255, 255, 0.8),
@@ -190,6 +1052,22 @@ body {
   text-transform: uppercase;
 }
 
+.cover-floral-crest .sacred-motif,
+.cover-floral-crest .sacred-shloka {
+  font-family: 'Noto Serif Telugu', serif;
+}
+
+.cover-floral-crest .sacred-motif {
+  font-size: 2.45rem;
+  line-height: 1.15;
+}
+
+.cover-floral-crest .sacred-shloka {
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+  text-transform: none;
+}
+
 .invitation-salutation {
   font-family: 'Cinzel', serif;
   font-size: 0.8rem;
@@ -202,7 +1080,8 @@ body {
 .cover-couple-names {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(3.2rem, 7vw, 5.2rem);
-  line-height: 1.15;
+  line-height: 1.05;
+  white-space: nowrap;
   color: var(--rose-dark);
   margin: 10px 0 18px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -220,7 +1099,7 @@ body {
 
 .cover-subtitle {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
   font-style: italic;
   color: var(--text-secondary);
   max-width: 480px;
@@ -292,7 +1171,7 @@ body {
 }
 
 .nav-container {
-  max-width: 1080px;
+  max-width: 1240px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -334,6 +1213,14 @@ body {
 @media (max-width: 768px) {
   .nav-links {
     display: none; /* Mobile navigation simplified */
+  }
+
+  .nav-container {
+    gap: 12px;
+  }
+
+  .language-selector {
+    margin-right: 0;
   }
 }
 
@@ -402,7 +1289,7 @@ body {
 .invitation-card-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: clamp(24px, 4vw, 40px);
   align-items: center;
   background: #FFFFFF;
   border-radius: var(--border-radius);
@@ -444,7 +1331,7 @@ body {
 .card-details-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(14px, 2vw, 20px);
 }
 
 .badge-ceremony {
@@ -548,18 +1435,6 @@ body {
   transform: translateY(-2px);
 }
 
-.btn-card-designer {
-  background: var(--rose-light);
-  border-color: var(--dusty-rose);
-  color: var(--rose-dark);
-}
-
-.btn-card-designer:hover {
-  background: var(--dusty-rose);
-  color: #fff;
-  transform: translateY(-2px);
-}
-
 /* ==========================================================================
    SECTION 3: RECEPTION INVITATION (EMERALD & FLORAL PALACE LUXURY)
    ========================================================================== */
@@ -574,7 +1449,7 @@ body {
 .reception-card-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: clamp(24px, 4vw, 40px);
   align-items: center;
   background: #FFFFFF;
   border-radius: var(--border-radius);
@@ -742,167 +1617,30 @@ body {
   text-transform: uppercase;
 }
 
-/* ==========================================================================
-   SECTION 6: RSVP EXPERIENCE
-   ========================================================================== */
-.rsvp-section {
-  background: #FFFFFF;
-}
-
-.rsvp-box-container {
-  max-width: 640px;
-  margin: 0 auto;
-  background: var(--bg-card);
-  border-radius: 24px;
-  padding: 45px 35px;
-  border: 1.5px solid var(--border-gold);
-  box-shadow: var(--shadow-luxury);
-}
-
-.rsvp-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-top: 25px;
-}
-
-.form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  text-align: left;
-}
-
-.form-field label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.78rem;
-  letter-spacing: 1px;
+.invitation-by-list {
+  display: grid;
+  gap: 5px;
+  margin: 18px 0 0;
+  padding: 0;
   color: var(--text-secondary);
-  font-weight: 700;
-  text-transform: uppercase;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.12rem;
+  list-style: none;
 }
 
-.form-field input,
-.form-field select,
-.form-field textarea {
-  width: 100%;
-  padding: 13px 16px;
-  border-radius: 10px;
-  border: 1.5px solid #E2D5D0;
-  background: #FAF8F5;
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: 0.95rem;
-  outline: none;
-  transition: var(--transition);
+.invitation-by-list li::before {
+  content: "•";
+  margin-right: 8px;
+  color: var(--gold-dark);
 }
 
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
-  border-color: var(--gold-primary);
-  background: #FFFFFF;
-  box-shadow: 0 0 0 3px var(--gold-glow);
-}
-
-.form-field .error-hint {
-  color: #B91C1C;
-  font-size: 0.8rem;
-  display: none;
-  margin-top: 2px;
-}
-
-.form-field.has-error input,
-.form-field.has-error select {
-  border-color: #B91C1C;
-}
-
-.form-field.has-error .error-hint {
-  display: block;
-}
-
-.rsvp-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-.btn-confirm-rsvp {
-  background: var(--rose-dark);
-  color: #FFFFFF;
-  padding: 16px;
-  border-radius: 50px;
-  border: none;
-  font-family: 'Cinzel', serif;
-  font-size: 0.95rem;
-  letter-spacing: 2px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(135, 56, 69, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: var(--transition);
-}
-
-.btn-confirm-rsvp:hover {
-  background: #6D2B36;
-  transform: translateY(-2px);
-}
-
-.btn-whatsapp-direct {
-  background: #25D366;
-  color: #FFFFFF;
-  padding: 14px;
-  border-radius: 50px;
-  border: none;
-  font-size: 0.92rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: var(--transition);
-  text-decoration: none;
-}
-
-.btn-whatsapp-direct:hover {
-  background: #1EBE5D;
-  transform: translateY(-2px);
-}
-
-/* RSVP Confirmation Alert Banner */
-.rsvp-feedback-banner {
-  display: none;
-  background: #EFFDF3;
-  border: 1.5px solid #86EFAC;
-  color: #166534;
-  padding: 20px;
-  border-radius: 14px;
-  margin-top: 20px;
+.countdown-static-message {
+  grid-column: 1 / -1;
+  padding: 22px;
+  color: #FFE58F;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
   text-align: center;
-  animation: elegantFadeIn 0.5s ease;
-}
-
-.rsvp-feedback-banner.show {
-  display: block;
-}
-
-.contact-helpers {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px dashed var(--border-gold);
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-
-.contact-helpers a {
-  color: var(--rose-dark);
-  font-weight: 600;
-  text-decoration: none;
 }
 
 /* ==========================================================================
@@ -922,25 +1660,6 @@ body {
   letter-spacing: 3px;
   color: var(--gold-light);
   margin-bottom: 12px;
-}
-
-.footer-card-designer-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 16px 0;
-  color: #FFE58F;
-  text-decoration: none;
-  font-size: 0.9rem;
-  border: 1px solid rgba(255, 229, 143, 0.4);
-  padding: 8px 18px;
-  border-radius: 30px;
-  transition: var(--transition);
-}
-
-.footer-card-designer-link:hover {
-  background: rgba(255, 229, 143, 0.15);
-  transform: translateY(-2px);
 }
 
 .footer-copy {
@@ -970,4 +1689,469 @@ body {
 .reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .cover-section {
+    padding: 32px 14px;
+  }
+
+  .cover-couple-names {
+    font-size: clamp(2.45rem, 12vw, 3.6rem);
+  }
+
+  .cover-couple-names .amp {
+    margin: 0 4px;
+  }
+
+  .cover-date-pill {
+    font-size: 0.72rem;
+    letter-spacing: 1.2px;
+    padding: 9px 14px;
+    margin-bottom: 28px;
+  }
+
+  .btn-open-invitation {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 20px;
+  }
+
+  .section {
+    padding: 62px 0;
+  }
+
+  .invitation-card-container,
+  .reception-card-container {
+    padding: 18px;
+    gap: 26px;
+  }
+
+  .card-details-content {
+    min-width: 0;
+  }
+
+  .couple-title-inline,
+  .reception-couple-title {
+    font-size: 2.3rem;
+  }
+
+  .detail-info {
+    min-width: 0;
+  }
+
+  .detail-info strong,
+  .detail-info span {
+    overflow-wrap: anywhere;
+  }
+
+  .btn-luxury {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dear-guest-card {
+    padding: 40px 22px;
+  }
+
+  .guest-heartfelt-quote {
+    font-size: 1.2rem;
+  }
+
+  .music-toggle-btn {
+    font-size: 0.78rem;
+    padding: 9px 13px;
+  }
+}
+
+/* ==========================================================================
+   SOUTH INDIAN TEMPLE HERITAGE DETAILS
+   ========================================================================== */
+.cover-section {
+  background:
+    linear-gradient(rgba(247, 240, 223, 0.88), rgba(247, 240, 223, 0.94)),
+    url('images/marriage_card.jpg') center/cover no-repeat;
+  border-bottom: 4px double var(--gold-primary);
+}
+
+.cover-section::before,
+.cover-section::after {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border: 1px solid rgba(112, 29, 37, 0.25);
+  transform: rotate(45deg);
+  opacity: 0.65;
+}
+
+.cover-section::before {
+  top: -60px;
+  left: -60px;
+  box-shadow: 0 0 0 9px rgba(196, 154, 67, 0.12), 0 0 0 18px rgba(112, 29, 37, 0.08);
+}
+
+.cover-section::after {
+  right: -60px;
+  bottom: -60px;
+  box-shadow: 0 0 0 9px rgba(196, 154, 67, 0.12), 0 0 0 18px rgba(112, 29, 37, 0.08);
+}
+
+.cover-card-envelope {
+  border-radius: 6px;
+  background: rgba(255, 253, 247, 0.96);
+  border: 1px solid var(--gold-primary);
+  box-shadow: 0 20px 55px rgba(112, 29, 37, 0.16), inset 0 0 0 8px rgba(196, 154, 67, 0.09);
+}
+
+.cover-card-envelope::before,
+.cover-card-envelope::after {
+  content: "❖";
+  position: absolute;
+  top: 14px;
+  color: var(--gold-primary);
+  font-size: 1.15rem;
+}
+
+.cover-card-envelope::before { left: 18px; }
+.cover-card-envelope::after { right: 18px; }
+
+.heritage-toranam {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin: -20px auto 24px;
+  color: var(--emerald-reception);
+}
+
+.heritage-toranam span {
+  width: 17px;
+  height: 25px;
+  display: block;
+  background: var(--emerald-reception);
+  border-radius: 100% 0 100% 0;
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 2px rgba(196, 154, 67, 0.25);
+}
+
+.heritage-toranam span:nth-child(even) {
+  transform: rotate(-45deg);
+  background: #52714c;
+}
+
+.sacred-motif {
+  color: var(--rose-dark);
+  text-shadow: 0 0 14px var(--gold-glow);
+}
+
+.sacred-shloka,
+.section-tag {
+  color: var(--gold-dark);
+}
+
+.cover-couple-names {
+  color: var(--rose-dark);
+  text-shadow: 1px 2px 0 rgba(196, 154, 67, 0.16);
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  white-space: normal;
+}
+
+.cover-couple-names > span:not(.amp) {
+  display: block;
+}
+
+.cover-couple-names .amp {
+  display: block;
+  margin: 0.08em 0;
+  line-height: 0.7;
+  color: var(--gold-primary);
+}
+
+.site-nav {
+  background: rgba(247, 240, 223, 0.95);
+  border-bottom: 3px double var(--gold-primary);
+}
+
+.nav-brand {
+  color: var(--rose-dark);
+}
+
+.wedding-section {
+  background:
+    linear-gradient(rgba(247, 240, 223, 0.92), rgba(247, 240, 223, 0.96)),
+    repeating-linear-gradient(90deg, transparent 0 28px, rgba(196, 154, 67, 0.055) 29px 30px);
+}
+
+.reception-section {
+  background:
+    radial-gradient(circle at 50% 0, rgba(196, 154, 67, 0.14), transparent 42%),
+    linear-gradient(180deg, #E8EFE5 0%, #F7F0DF 100%);
+}
+
+.section-header {
+  position: relative;
+}
+
+.section-header::before,
+.section-header::after {
+  content: "❖";
+  position: absolute;
+  top: 50%;
+  color: var(--gold-primary);
+  opacity: 0.7;
+  font-size: 1.2rem;
+}
+
+.section-header::before { left: 0; }
+.section-header::after { right: 0; }
+
+.invitation-card-container,
+.reception-card-container {
+  position: relative;
+  border-radius: 6px;
+  border: 1px solid var(--gold-primary);
+  box-shadow: var(--shadow-luxury), inset 0 0 0 6px rgba(196, 154, 67, 0.07);
+}
+
+.invitation-card-container::before,
+.reception-card-container::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(196, 154, 67, 0.3);
+  pointer-events: none;
+}
+
+.card-illustration-frame {
+  border-radius: 4px;
+  border: 3px double var(--gold-primary);
+}
+
+.kolam-mark {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  color: var(--gold-primary);
+  font-size: 1.3rem;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.badge-ceremony {
+  background: var(--rose-light);
+  color: var(--rose-dark);
+  border-color: var(--gold-primary);
+}
+
+.couple-title-inline {
+  color: var(--rose-dark);
+}
+
+.parents-note {
+  border-left-color: var(--gold-primary);
+}
+
+.btn-open-invitation,
+.btn-map,
+.btn-map-emerald {
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+}
+
+.btn-open-invitation {
+  background: var(--gold-gradient);
+  box-shadow: 0 8px 24px var(--gold-glow), inset 0 0 0 1px rgba(255,255,255,0.35);
+}
+
+.btn-map {
+  background: var(--bg-ivory);
+}
+
+.badge-reception {
+  background: var(--sage-light);
+  color: var(--emerald-reception);
+  border-color: var(--gold-primary);
+}
+
+.reception-couple-title,
+.reception-section .section-title {
+  color: var(--emerald-reception) !important;
+}
+
+.reception-garland {
+  text-align: center;
+  color: var(--gold-primary);
+  font-size: 1.2rem;
+  letter-spacing: 0.6rem;
+  margin-bottom: -24px;
+}
+
+.countdown-section {
+  background:
+    linear-gradient(rgba(49, 91, 67, 0.94), rgba(31, 57, 42, 0.98)),
+    repeating-linear-gradient(45deg, transparent 0 14px, rgba(232, 202, 130, 0.06) 15px 16px);
+  border-top: 4px double var(--gold-primary);
+  border-bottom: 4px double var(--gold-primary);
+}
+
+.timer-box {
+  border-radius: 4px;
+  border-color: rgba(232, 202, 130, 0.6);
+}
+
+.dear-guest-section {
+  background: var(--bg-ivory);
+}
+
+.dear-guest-card {
+  border-radius: 6px;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-luxury), inset 0 0 0 6px rgba(196, 154, 67, 0.07);
+}
+
+.site-footer {
+  background: var(--rose-dark);
+  border-top: 4px double var(--gold-primary);
+}
+
+@media (max-width: 600px) {
+  .section-header::before,
+  .section-header::after {
+    display: none;
+  }
+
+  .heritage-toranam {
+    gap: 10px;
+  }
+
+  .heritage-toranam span {
+    width: 13px;
+    height: 20px;
+  }
+
+  .reception-garland {
+    margin-bottom: -12px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Final cascade for the premium light reception and countdown surfaces. */
+.reception-section {
+  background:
+    radial-gradient(circle at 84% 18%, rgba(196, 154, 67, 0.16), transparent 23%),
+    radial-gradient(circle at 12% 72%, rgba(233, 220, 197, 0.55), transparent 34%),
+    linear-gradient(135deg, #F7F0DF 0%, #FFFDF8 52%, #E9DCC5 100%);
+}
+
+.reception-card-container {
+  background: rgba(255, 253, 248, 0.88);
+  border-color: rgba(196, 154, 67, 0.55);
+  box-shadow: 0 20px 52px rgba(112, 29, 37, 0.1), inset 0 0 0 6px rgba(196, 154, 67, 0.06);
+}
+
+.reception-couple-motif {
+  position: absolute;
+  right: 2.5%;
+  top: 4%;
+  width: clamp(72px, 11vw, 128px);
+  height: auto;
+  color: var(--gold-primary);
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+  animation: motifBreath 6s ease-in-out infinite;
+}
+
+.reception-card-container > *:not(.reception-couple-motif) {
+  position: relative;
+  z-index: 1;
+}
+
+.reception-section .card-illustration-frame {
+  border-color: rgba(196, 154, 67, 0.6) !important;
+  box-shadow: 0 14px 34px rgba(49, 91, 67, 0.1);
+}
+
+.countdown-section {
+  background:
+    radial-gradient(circle at 50% 0, rgba(196, 154, 67, 0.18), transparent 38%),
+    linear-gradient(135deg, #F7F0DF 0%, #FFFDF8 48%, #E9DCC5 100%);
+  color: var(--text-primary);
+  border-top: 1px solid var(--border-gold);
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.countdown-section .section-title,
+.countdown-section .section-tag {
+  color: var(--rose-dark);
+}
+
+.countdown-section .ornamental-divider {
+  color: var(--gold-dark) !important;
+}
+
+.timer-box {
+  background: rgba(255, 253, 248, 0.8);
+  border-color: rgba(196, 154, 67, 0.58);
+  box-shadow: 0 10px 24px rgba(112, 29, 37, 0.1), inset 0 0 0 1px rgba(255,255,255,0.7);
+}
+
+.timer-box .timer-number {
+  color: var(--emerald-reception);
+  text-shadow: 0 0 12px rgba(49, 91, 67, 0.14);
+}
+
+.timer-box .timer-label,
+.countdown-event-note {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .reception-couple-motif {
+    top: 1.5%;
+    right: 3%;
+    width: 76px;
+  }
+}
+
+@media (max-width: 600px) {
+  .reception-couple-motif {
+    width: 60px;
+    opacity: 0.1;
+  }
+
+  .reception-card-container {
+    gap: 20px;
+  }
+
+  .reception-section .card-illustration-frame {
+    max-width: 88%;
+    margin: 0 auto;
+  }
+
+  .countdown-section {
+    padding: 68px 16px;
+  }
+}
+
+/* Keep the wedding artwork and details balanced on laptop and desktop widths. */
+@media (min-width: 901px) {
+  .wedding-artwork-container {
+    display: block;
+    max-width: 650px;
+    margin: 0 auto clamp(24px, 4vw, 42px);
+  }
+
+  .wedding-artwork-container .wedding-template-frame {
+    width: 100%;
+  }
+
+  .wedding-details-container {
+    max-width: 900px;
+    margin-inline: auto;
+  }
 }

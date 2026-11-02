@@ -1,0 +1,229 @@
+/* Original supplied wedding template card. */
+.wedding-template-frame {
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  align-self: start;
+  display: block !important;
+  height: auto !important;
+  box-shadow: 0 18px 38px rgba(62, 29, 11, 0.22);
+}
+
+.wedding-template-card {
+  position: relative;
+  width: 100%;
+  min-width: 100%;
+  align-self: flex-start;
+  aspect-ratio: 3 / 4;
+  height: auto !important;
+  overflow: hidden;
+  line-height: 1.15;
+}
+
+.wedding-template-card > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wedding-template-copy {
+  position: absolute;
+  top: 14%;
+  left: 14%;
+  right: 14%;
+  height: clamp(180px, 30vw, 360px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(3px, 0.5vw, 7px);
+  overflow: hidden;
+  color: #701D25;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.template-sacred-om {
+  font: 600 clamp(1.05rem, 2.4vw, 2rem) 'Noto Serif Telugu', serif;
+}
+
+.template-sacred-blessing {
+  font: 600 clamp(0.58rem, 1.35vw, 1rem) 'Noto Serif Telugu', serif;
+}
+
+.template-salutation {
+  margin-top: 2%;
+  font: 600 clamp(0.38rem, 0.75vw, 0.64rem) 'Montserrat', sans-serif;
+  letter-spacing: 0.08em;
+}
+
+.template-couple-names {
+  max-width: 100%;
+  font: clamp(1.05rem, 3vw, 2.35rem) 'Great Vibes', cursive;
+  line-height: 1;
+}
+
+.template-message {
+  max-width: 92%;
+  font-size: clamp(0.48rem, 1.05vw, 0.84rem);
+  line-height: 1.08;
+}
+
+.template-date,
+.template-time,
+.template-venue,
+.template-address {
+  max-width: 96%;
+  font: clamp(0.42rem, 0.85vw, 0.68rem) 'Montserrat', sans-serif;
+  line-height: 1.1;
+}
+
+.template-date {
+  margin-top: 2%;
+  font: 600 clamp(0.53rem, 1.05vw, 0.82rem) 'Playfair Display', serif;
+}
+
+.template-venue {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+.template-address {
+  max-width: 90%;
+  font-size: clamp(0.36rem, 0.7vw, 0.56rem);
+}
+
+.btn-download-card {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+@media (max-width: 600px) {
+  .wedding-template-copy {
+    top: 15%;
+    left: 13%;
+    right: 13%;
+    height: 180px;
+    gap: 2px;
+  }
+
+  .template-message,
+  .template-address {
+    max-width: 94%;
+  }
+
+  .card-action-bar {
+    flex-wrap: wrap;
+  }
+}
+
+.cover-couple-photo,
+.wedding-family-photo,
+.reception-family-photo {
+  margin: 0;
+  overflow: hidden;
+}
+
+.cover-couple-photo {
+  width: min(250px, 72vw);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto 26px;
+  border: 2px solid rgba(196, 154, 67, 0.62);
+  border-radius: 120px 120px 18px 18px;
+  box-shadow: 0 14px 28px rgba(112, 29, 37, 0.16);
+}
+
+.cover-couple-photo img,
+.wedding-family-photo img,
+.reception-family-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-couple-photo img {
+  object-position: center 42%;
+}
+
+.wedding-family-photo {
+  width: min(900px, 100%);
+  aspect-ratio: 3 / 2;
+  margin: 0 auto clamp(24px, 4vw, 42px);
+  justify-self: center;
+  border: 1px solid rgba(196, 154, 67, 0.58);
+  border-radius: 18px;
+  box-shadow: 0 18px 38px rgba(112, 29, 37, 0.16);
+}
+
+.wedding-family-photo img {
+  object-position: center 44%;
+}
+
+.reception-family-photo {
+  width: min(820px, 100%);
+  aspect-ratio: 16 / 9;
+  margin: 0 auto clamp(24px, 4vw, 42px);
+  border: 1px solid rgba(196, 154, 67, 0.58);
+  border-radius: 18px;
+  box-shadow: 0 18px 38px rgba(49, 91, 67, 0.16);
+}
+
+.reception-family-photo img {
+  object-position: center 48%;
+}
+
+.reception-artwork-photo {
+  width: min(530px, 100%);
+  margin: 0 auto clamp(24px, 4vw, 42px);
+  border-radius: 18px;
+  border-width: 1px;
+  box-shadow: 0 18px 38px rgba(49, 91, 67, 0.16);
+}
+
+.reception-artwork-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wedding-details-container,
+.reception-details-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 40px);
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 6px;
+  border: 1px solid var(--gold-primary);
+  box-shadow: var(--shadow-luxury), inset 0 0 0 6px rgba(196, 154, 67, 0.07);
+  padding: 40px;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+@media (max-width: 600px) {
+  .cover-couple-photo {
+    width: min(190px, 62vw);
+    margin-bottom: 20px;
+  }
+
+  .wedding-family-photo {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+  }
+
+  .wedding-details-container,
+  .reception-details-container {
+    padding: 24px 18px;
+  }
+
+  .reception-family-photo {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+  }
+
+  .reception-artwork-photo {
+    border-radius: 12px;
+  }
+}
