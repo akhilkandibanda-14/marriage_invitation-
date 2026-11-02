@@ -43,7 +43,7 @@ const WEDDING_CONFIG = {
       brideRelation: "Daughter of Bonagiri Ravi & Kalyani",
       dateFormatted: "4 December 2026",
       weekday: "Thursday",
-      timeFormatted: "8:09 AM onwards",
+      timeFormatted: "8:09 AM",
       lunchTimeFormatted: "1:00 PM",
       targetDateISO: "2026-12-04T08:09:00+05:30",
       countdownEnabled: true,
