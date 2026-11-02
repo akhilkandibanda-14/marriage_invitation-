@@ -108,6 +108,7 @@ function initDataBinding() {
   // Reception Section
   setText("receptionCoupleNames", `${brideShortName} & ${groomShortName}`);
   setText("receptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
+  setText("receptionTime", events?.reception?.timeFormatted || "To be announced");
   setText("receptionVenueName", events?.reception?.venueName || "To be announced");
   setText("receptionVenueAddress", events?.reception?.venueAddress || "To be announced");
 

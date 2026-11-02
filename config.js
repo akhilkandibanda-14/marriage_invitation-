@@ -55,9 +55,10 @@ const WEDDING_CONFIG = {
     reception: {
       title: "Wedding Reception",
       subTitle: "An Evening of Celebration & Dinner",
-      dateFormatted: null,
-      timeFormatted: null,
-      targetDateISO: null,
+      dateFormatted: "5 December 2026",
+      weekday: "Saturday",
+      timeFormatted: "7:00 PM onwards",
+      targetDateISO: "2026-12-05T19:00:00+05:30",
       venueName: "Kiranam & Jaggery Merchants Function Hall",
       venueAddress: "Ramachandra Nagar Colony, Prakash Nagar, Khammam, Telangana 507003",
       googleMapsUrl: "https://maps.app.goo.gl/q4hfi4xnTwYtdS6PA?g_st=iw",

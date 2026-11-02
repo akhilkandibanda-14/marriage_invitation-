@@ -27,7 +27,7 @@ RSVP forms, phone numbers, WhatsApp actions, card customization, and public card
 
 `config.js` is the single source of truth for couple names, parent details, invitation-by families, event dates, times, venues, map links, guest messaging, and music settings. The wedding date is configured as **Wednesday, 26 August 2026**, at **Srinivasa Gardens, Thorrur**. Its live countdown is intentionally disabled because that date has passed.
 
-Reception venue is configured as **Kiranam & Jaggery Merchants Function Hall, Khammam** with its Google Maps link; reception date/time fields remain customizable in `config.js`.
+Reception is configured for **Saturday, 5 December 2026 at 7:00 PM onwards** at **Kiranam & Jaggery Merchants Function Hall, Khammam** with its Google Maps link.
 
 Translations are centralized in `translations.js`. English is the first-visit default; a visitor's selected language is stored in browser local storage and falls back to English if a translation is unavailable. Names, venue names, addresses, map URLs, and configured numerical event details remain unchanged.
 
