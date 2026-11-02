@@ -50,3 +50,4 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`Wedding invitation server running at http://localhost:${PORT}`);
 });
+
