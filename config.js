@@ -40,7 +40,6 @@ const WEDDING_CONFIG = {
     wedding: {
       title: "Wedding Ceremony",
       subTitle: "The Sacred Muhurtham",
-      invitedBy: "Bonagiri Ravi & Kalyani",
       brideRelation: "Daughter of Bonagiri Ravi & Kalyani",
       dateFormatted: "4 December 2026",
       weekday: "Thursday",
