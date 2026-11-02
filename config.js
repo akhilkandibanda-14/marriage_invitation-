@@ -85,3 +85,4 @@ const WEDDING_CONFIG = {
 if (typeof Object.freeze === "function") {
   Object.freeze(WEDDING_CONFIG);
 }
+
