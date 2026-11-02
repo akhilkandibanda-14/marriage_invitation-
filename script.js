@@ -116,7 +116,6 @@ function initDataBinding() {
     ? events.reception.invitedBy.join("\n")
     : events?.reception?.invitedBy;
   setText("receptionInvitedBy", receptionInvitedBy || "To be announced");
-  setText("templateReceptionHostNames", receptionInvitedBy || "To be announced");
   setText("receptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
   setText("receptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
   setText("receptionVenueName", events?.reception?.venueName || "To be announced");
@@ -224,7 +223,6 @@ function applyLanguage(language) {
   setText("receptionTime", formatEventTime(reception.timeFormatted, translations.eveningTime));
   const receptionInvitedBy = Array.isArray(reception.invitedBy) ? reception.invitedBy.join("\n") : reception.invitedBy;
   setText("receptionInvitedBy", receptionInvitedBy || "To be announced");
-  setText("templateReceptionHostNames", receptionInvitedBy || "To be announced");
   setText("templateReceptionCoupleNames", `${WEDDING_CONFIG.couple.groom.shortName} & ${WEDDING_CONFIG.couple.bride.shortName}`);
   setText("templateReceptionMessage", translations.receptionMessage);
   setText("templateReceptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
@@ -426,35 +424,28 @@ function initReceptionCardDownload() {
 
       // 1. Auspicious Shloka
       drawCentered("॥ శ్రీ గణేశాయ నమః ॥", 140, font(18, "'Noto Serif Telugu', serif"), "#701D25");
-      // 2. Invited By
-      const receptionHostLabel = translations.invitedByLabel || "INVITED BY";
-      drawCentered(receptionHostLabel, 164, `700 ${font(10, "'Montserrat', sans-serif")}`, "#701D25");
-      const receptionHostNames = Array.isArray(reception.invitedBy) ? reception.invitedBy : [reception.invitedBy];
-      receptionHostNames.slice(0, 3).forEach((name, index) => {
-        drawCentered(name, 182 + index * 16, `700 ${font(11, "'Playfair Display', serif")}`, "#2D2D2D", 680);
-      });
-      // 3. Reception Title
-      drawCentered(translations.receptionTitle.toUpperCase(), 235, font(20, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
-      // 4. Couple Names with clear capital letters
+      // 2. Reception Title
+      drawCentered(translations.receptionTitle.toUpperCase(), 222, font(20, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
+      // 3. Couple Names with clear capital letters
       const coupleNames = `${couple.groom.shortName} & ${couple.bride.shortName}`;
-      drawCentered(coupleNames, 282, `700 ${font(36, "'Playfair Display', serif")}`, "#701D25", 680);
+      drawCentered(coupleNames, 272, `700 ${font(36, "'Playfair Display', serif")}`, "#701D25", 680);
 
       // 5. Message wrapped
       const messageFont = font(14, "'Cormorant Garamond', serif");
       const messageLines = wrap(translations.receptionMessage, 600, messageFont);
       messageLines.slice(0, 3).forEach((line, index) => {
-        drawCentered(line, 330 + index * 20, messageFont, "#3D2B24", 600);
+        drawCentered(line, 320 + index * 20, messageFont, "#3D2B24", 600);
       });
 
       // 6. Date & Time
-      drawCentered(formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale), 405, `700 ${font(18, "'Playfair Display', serif")}`, "#1B432E");
-      drawCentered(formatEventTime(reception.timeFormatted, translations.eveningTime), 435, `700 ${font(16, "'Montserrat', sans-serif")}`, "#8C1D2D");
+      drawCentered(formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale), 395, `700 ${font(18, "'Playfair Display', serif")}`, "#1B432E");
+      drawCentered(formatEventTime(reception.timeFormatted, translations.eveningTime), 425, `700 ${font(16, "'Montserrat', sans-serif")}`, "#8C1D2D");
 
       // 7. Venue & Address
-      drawCentered(reception.venueName, 485, `700 ${font(16, "'Playfair Display', serif")}`, "#1A1A1A", 640);
+      drawCentered(reception.venueName, 475, `700 ${font(16, "'Playfair Display', serif")}`, "#1A1A1A", 640);
       const addressLines = wrap(reception.venueAddress, 580, font(12, "'Montserrat', sans-serif"));
       addressLines.slice(0, 2).forEach((line, index) => {
-        drawCentered(line, 512 + index * 16, font(12, "'Montserrat', sans-serif"), "#555555", 580);
+        drawCentered(line, 502 + index * 16, font(12, "'Montserrat', sans-serif"), "#555555", 580);
       });
 
       const link = document.createElement("a");
