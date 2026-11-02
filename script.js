@@ -109,6 +109,13 @@ function initDataBinding() {
 
   // Reception Section
   setText("receptionCoupleNames", `${groomShortName} & ${brideShortName}`);
+  const receptionParentsNote = document.getElementById("receptionParentsNote");
+  if (receptionParentsNote) {
+    setHtml("receptionParentsNote", `
+      <span>Invited by: <strong>${couple?.groom?.fatherName} & ${couple?.groom?.motherName}</strong></span>
+    `);
+  }
+  setText("templateReceptionSalutation", events?.reception?.salutation || "TOGETHER WITH THEIR FAMILIES");
   setText("receptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
   setText("receptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
   setText("receptionVenueName", events?.reception?.venueName || "To be announced");
@@ -210,6 +217,14 @@ function applyLanguage(language) {
   setText("receptionMessage", translations.receptionMessage);
   setText("receptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
   setText("receptionTime", formatEventTime(reception.timeFormatted, translations.eveningTime));
+  const receptionParentsNote = document.getElementById("receptionParentsNote");
+  if (receptionParentsNote) {
+    const prefix = currentLanguage === "te" ? "ఆహ్వానించువారు" : "Invited by";
+    setHtml("receptionParentsNote", `
+      <span>${prefix}: <strong>${WEDDING_CONFIG.couple.groom.fatherName} & ${WEDDING_CONFIG.couple.groom.motherName}</strong></span>
+    `);
+  }
+  setText("templateReceptionSalutation", translations?.receptionSalutation || events?.reception?.salutation || "TOGETHER WITH THEIR FAMILIES");
   setText("templateReceptionCoupleNames", `${WEDDING_CONFIG.couple.groom.fullName} & ${WEDDING_CONFIG.couple.bride.fullName}`.toUpperCase());
   setText("templateReceptionMessage", translations.receptionMessage);
   setText("templateReceptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
@@ -405,8 +420,12 @@ function initReceptionCardDownload() {
 
       // 1. Auspicious Shloka
       drawCentered("॥ శ్రీ గణేశాయ నమః ॥", 145, font(18, "'Noto Serif Telugu', serif"), "#701D25");
-      // 2. Salutation
-      drawCentered(translations.salutation, 178, font(13, "'Montserrat', sans-serif"), "#555555");
+      // 2. Salutation / Invited By
+      const salutationText = translations.receptionSalutation || events?.reception?.salutation || translations.salutation;
+      const salutationLines = wrap(salutationText, 620, font(11, "'Montserrat', sans-serif"));
+      salutationLines.slice(0, 2).forEach((line, index) => {
+        drawCentered(line, 172 + index * 14, font(11, "'Montserrat', sans-serif"), "#444444", 620);
+      });
       // 3. Reception Title
       drawCentered(translations.receptionTitle.toUpperCase(), 216, font(22, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
       // 4. Couple Names in UPPERCASE
