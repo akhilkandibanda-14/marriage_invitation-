@@ -192,8 +192,21 @@
         <div class="ornamental-divider" style="color:var(--emerald-reception);"><i class="fas fa-glass-cheers"></i></div>
       </div>
 
-      <div class="reception-artwork-photo card-illustration-frame" style="border-color: rgba(27,67,46,0.3);">
-        <img src="images/image.png" alt="Original reception invitation artwork with the couple and garden setting" id="receptionCardImg" loading="lazy">
+      <div class="card-illustration-frame reception-template-frame" style="border-color: rgba(27,67,46,0.3);">
+        <div class="reception-template-card" id="receptionTemplateCard">
+          <img src="images/reception_template.png" alt="Reception invitation artwork with Ganesha and couple" id="receptionCardImg" loading="lazy">
+          <div class="reception-template-copy">
+            <span class="reception-template-blessing" id="templateReceptionBlessing">॥ శ్రీ గణేశాయ నమః ॥</span>
+            <span class="reception-template-salutation" data-i18n="salutation">TOGETHER WITH THEIR FAMILIES</span>
+            <span class="reception-template-title" data-i18n="receptionTitle">WEDDING RECEPTION</span>
+            <span class="template-couple-names reception-template-names" id="templateReceptionCoupleNames">AKHILA & NIKHIL</span>
+            <span class="reception-template-message" id="templateReceptionMessage">Join us for an enchanting evening filled with laughter, music, fine cuisine, and togetherness as we celebrate the newlyweds.</span>
+            <span class="reception-template-date" id="templateReceptionDate">Saturday, 5 December 2026</span>
+            <span class="reception-template-dinner" id="templateReceptionTime">Dinner: 8:00 PM onwards</span>
+            <span class="reception-template-venue" id="templateReceptionVenue">Kiranam & Jaggery Merchants Function Hall</span>
+            <span class="reception-template-address" id="templateReceptionAddress">Ramachandra Nagar Colony, Prakash Nagar, Khammam, Telangana 507003</span>
+          </div>
+        </div>
       </div>
 
       <figure class="reception-family-photo">
@@ -228,7 +241,7 @@
             <div class="detail-info">
               <span class="detail-label" data-i18n="dateLabel">Date</span>
               <strong id="receptionDate">Saturday, 5 December 2026</strong>
-              <span id="receptionTime">7:00 PM onwards</span>
+              <span id="receptionTime">Dinner: 8:00 PM onwards</span>
             </div>
           </div>
 
@@ -250,6 +263,9 @@
             <a href="#" target="_blank" rel="noopener noreferrer" class="btn-luxury btn-calendar btn-calendar-emerald" id="receptionCalendarBtn">
               <i class="far fa-calendar-plus" aria-hidden="true"></i> <span data-i18n="addToCalendar">Add to Calendar</span>
             </a>
+            <button type="button" class="btn-luxury btn-download-card btn-calendar-emerald" id="downloadReceptionCard">
+              <i class="fas fa-download" aria-hidden="true"></i> <span data-i18n="downloadCard">Download Card</span>
+            </button>
           </div>
         </div>
 

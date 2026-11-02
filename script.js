@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollObservers();
   initNavigationSpy();
   initWeddingCardDownload();
+  initReceptionCardDownload();
 });
 
 const LANGUAGE_STORAGE_KEY = "wedding_invitation_language";
@@ -109,9 +110,15 @@ function initDataBinding() {
   // Reception Section
   setText("receptionCoupleNames", `${brideShortName} & ${groomShortName}`);
   setText("receptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
-  setText("receptionTime", events?.reception?.timeFormatted || "To be announced");
+  setText("receptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
   setText("receptionVenueName", events?.reception?.venueName || "To be announced");
   setText("receptionVenueAddress", events?.reception?.venueAddress || "To be announced");
+  setText("templateReceptionCoupleNames", `${brideFullName} & ${groomFullName}`.toUpperCase());
+  setText("templateReceptionMessage", events?.reception?.invitationMessage || "To be announced");
+  setText("templateReceptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
+  setText("templateReceptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
+  setText("templateReceptionVenue", events?.reception?.venueName || "To be announced");
+  setText("templateReceptionAddress", events?.reception?.venueAddress || "To be announced");
 
   const receptionMapBtn = document.getElementById("receptionMapBtn");
   if (receptionMapBtn) {
@@ -203,6 +210,12 @@ function applyLanguage(language) {
   setText("receptionMessage", translations.receptionMessage);
   setText("receptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
   setText("receptionTime", formatEventTime(reception.timeFormatted, translations.eveningTime));
+  setText("templateReceptionCoupleNames", `${WEDDING_CONFIG.couple.bride.fullName} & ${WEDDING_CONFIG.couple.groom.fullName}`.toUpperCase());
+  setText("templateReceptionMessage", translations.receptionMessage);
+  setText("templateReceptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
+  setText("templateReceptionTime", formatEventTime(reception.timeFormatted, translations.eveningTime));
+  setText("templateReceptionVenue", reception.venueName || "To be announced");
+  setText("templateReceptionAddress", reception.venueAddress || "To be announced");
   setText("guestGreetingTitle", translations.guestTitle);
   setText("guestHeartfeltQuote", `"${translations.guestMessage}"`);
   setText("guestFamilyClosing", translations.guestClosing);
@@ -333,6 +346,97 @@ function initWeddingCardDownload() {
       link.click();
     } catch (error) {
       console.error("Unable to download wedding invitation:", error);
+    }
+  });
+}
+
+
+function initReceptionCardDownload() {
+  const button = document.getElementById("downloadReceptionCard");
+  const image = document.getElementById("receptionCardImg");
+  if (!button || !image || button.dataset.bound === "true") return;
+
+  button.dataset.bound = "true";
+  button.addEventListener("click", async () => {
+    try {
+      if (!image.complete || !image.naturalWidth) {
+        await new Promise((resolve, reject) => {
+          image.addEventListener("load", resolve, { once: true });
+          image.addEventListener("error", () => reject(new Error("Reception template could not be loaded.")), { once: true });
+        });
+      }
+
+      const { couple, events } = WEDDING_CONFIG;
+      const reception = events.reception;
+      const canvas = document.createElement("canvas");
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+      const context = canvas.getContext("2d");
+      if (!context) throw new Error("Canvas rendering is unavailable.");
+
+      context.drawImage(image, 0, 0);
+      const translations = TRANSLATIONS?.[currentLanguage] || TRANSLATIONS.en;
+      const scale = canvas.width / 828;
+      const centerX = canvas.width / 2;
+      const font = (size, family) => `${Math.round(size * scale)}px ${family}`;
+      const drawCentered = (text, y, fontStyle, color, maxWidth = 640) => {
+        context.font = fontStyle;
+        context.fillStyle = color;
+        context.textAlign = "center";
+        context.fillText(text, centerX, y * scale, maxWidth * scale);
+      };
+      const wrap = (text, maxWidth, fontStyle) => {
+        context.font = fontStyle;
+        const words = text.split(/\s+/);
+        const lines = [];
+        let line = "";
+        words.forEach((word) => {
+          const candidate = line ? `${line} ${word}` : word;
+          if (context.measureText(candidate).width > maxWidth * scale && line) {
+            lines.push(line);
+            line = word;
+          } else {
+            line = candidate;
+          }
+        });
+        if (line) lines.push(line);
+        return lines;
+      };
+
+      // 1. Auspicious Shloka
+      drawCentered("॥ శ్రీ గణేశాయ నమః ॥", 145, font(18, "'Noto Serif Telugu', serif"), "#701D25");
+      // 2. Salutation
+      drawCentered(translations.salutation, 178, font(13, "'Montserrat', sans-serif"), "#555555");
+      // 3. Reception Title
+      drawCentered(translations.receptionTitle.toUpperCase(), 216, font(22, "'Cinzel', 'Playfair Display', serif"), "#1B432E");
+      // 4. Couple Names in UPPERCASE
+      const namesUpper = `${couple.bride.fullName} & ${couple.groom.fullName}`.toUpperCase();
+      drawCentered(namesUpper, 272, `800 ${font(30, "'Cinzel', 'Playfair Display', serif")}`, "#8C1D2D", 680);
+
+      // 5. Message wrapped
+      const messageFont = font(14, "'Cormorant Garamond', serif");
+      const messageLines = wrap(translations.receptionMessage, 600, messageFont);
+      messageLines.slice(0, 3).forEach((line, index) => {
+        drawCentered(line, 320 + index * 20, messageFont, "#3D2B24", 600);
+      });
+
+      // 6. Date & Time
+      drawCentered(formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale), 395, `700 ${font(18, "'Playfair Display', serif")}`, "#1B432E");
+      drawCentered(formatEventTime(reception.timeFormatted, translations.eveningTime), 425, `700 ${font(16, "'Montserrat', sans-serif")}`, "#8C1D2D");
+
+      // 7. Venue & Address
+      drawCentered(reception.venueName, 475, `700 ${font(16, "'Playfair Display', serif")}`, "#1A1A1A", 640);
+      const addressLines = wrap(reception.venueAddress, 580, font(12, "'Montserrat', sans-serif"));
+      addressLines.slice(0, 2).forEach((line, index) => {
+        drawCentered(line, 502 + index * 16, font(12, "'Montserrat', sans-serif"), "#555555", 580);
+      });
+
+      const link = document.createElement("a");
+      link.download = `reception-invitation-${currentLanguage}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (error) {
+      console.error("Unable to download reception invitation:", error);
     }
   });
 }
@@ -486,9 +590,9 @@ function initCalendarButtons() {
   const receptionCalBtn = document.getElementById("receptionCalendarBtn");
   if (receptionCalBtn) {
     const title = encodeURIComponent("Wedding Reception: Akhila & Nikhil");
-    const details = encodeURIComponent("Wedding Reception & Dinner of Akhila & Nikhil at 7:00 PM onwards. Venue: Kiranam & Jaggery Merchants Function Hall, Khammam.");
+    const details = encodeURIComponent("Wedding Reception & Dinner of Akhila & Nikhil (Dinner: 8:00 PM onwards). Venue: Kiranam & Jaggery Merchants Function Hall, Khammam.");
     const location = encodeURIComponent("Kiranam & Jaggery Merchants Function Hall, Ramachandra Nagar Colony, Prakash Nagar, Khammam, Telangana 507003");
-    const dates = "20261205T133000Z/20261205T173000Z";
+    const dates = "20261205T143000Z/20261205T183000Z";
     receptionCalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
   }
 }
