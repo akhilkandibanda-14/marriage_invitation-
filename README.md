@@ -6,7 +6,7 @@ A luxury South Indian digital wedding and reception invitation website crafted f
 `config.js` is the single source of truth for couple names, parent details, invitation-by families, event dates, times, venues, map links, guest messaging, and music settings.
 
 - **Wedding Ceremony**: **Thursday, 4 December 2026 at 8:09 AM** at **Rama Upender Garden Function Hall, Thorrur**. Live countdown is active.
-- **Wedding Reception**: **Saturday, 5 December 2026 at Dinner: 8:00 PM onwards** at **Kiranam & Jaggery Merchants Function Hall, Khammam** with Google Maps link.
+- **Wedding Reception**: **Saturday, 5 December 2026 at Reception: 6:30 PM onwards, Dinner: 8:00 PM onwards** at **Kiranam & Jaggery Merchants Function Hall, Khammam** with Google Maps link.
 
 Translations are centralized in `translations.js`. English is the first-visit default; a visitor's selected language is stored in browser local storage and falls back to English if a translation is unavailable. Names, venue names, addresses, map URLs, and configured numerical event details remain unchanged.
 

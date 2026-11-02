@@ -118,14 +118,16 @@ function initDataBinding() {
     : events?.reception?.invitedBy;
   setText("receptionInvitedBy", receptionInvitedBy || "To be announced");
   setText("receptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
-  setText("receptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
+  setText("receptionTime", formatEventTime(events?.reception?.timeFormatted, "Reception: {time} onwards"));
+  setText("receptionDinner", formatEventTime(events?.reception?.dinnerTimeFormatted, "Dinner: {time} onwards"));
   setText("receptionVenueName", events?.reception?.venueName || "To be announced");
   setText("receptionVenueAddress", events?.reception?.venueAddress || "To be announced");
   setText("templateReceptionCoupleNames", `${groomShortName} & ${brideShortName}`);
   setText("templateReceptionGroomRelation", `Son of ${couple?.groom?.fatherName} & ${couple?.groom?.motherName}`);
   setText("templateReceptionMessage", events?.reception?.invitationMessage || "To be announced");
   setText("templateReceptionDate", formatEventDate(events?.reception?.targetDateISO, events?.reception?.dateFormatted));
-  setText("templateReceptionTime", events?.reception?.timeFormatted || "Dinner: 8:00 PM onwards");
+  setText("templateReceptionTime", formatEventTime(events?.reception?.timeFormatted, "Reception: {time} onwards"));
+  setText("templateReceptionDinner", formatEventTime(events?.reception?.dinnerTimeFormatted, "Dinner: {time} onwards"));
   setText("templateReceptionVenue", events?.reception?.venueName || "To be announced");
   setText("templateReceptionAddress", events?.reception?.venueAddress || "To be announced");
 
@@ -230,14 +232,16 @@ function applyLanguage(language) {
   setText("receptionSubTitle", translations.receptionSubtitle);
   setText("receptionMessage", translations.receptionMessage);
   setText("receptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
-  setText("receptionTime", formatEventTime(reception.timeFormatted, translations.eveningTime));
+  setText("receptionTime", formatEventTime(reception.timeFormatted, translations.receptionTime || "Reception: {time} onwards"));
+  setText("receptionDinner", formatEventTime(reception.dinnerTimeFormatted, translations.eveningTime || "Dinner: {time} onwards"));
   const receptionInvitedBy = Array.isArray(reception.invitedBy) ? reception.invitedBy.join("\n") : reception.invitedBy;
   setText("receptionInvitedBy", receptionInvitedBy || "To be announced");
   setText("templateReceptionCoupleNames", `${WEDDING_CONFIG.couple.groom.shortName} & ${WEDDING_CONFIG.couple.bride.shortName}`);
   setText("templateReceptionGroomRelation", translations.receptionGroomRelation);
   setText("templateReceptionMessage", translations.receptionMessage);
   setText("templateReceptionDate", formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale));
-  setText("templateReceptionTime", formatEventTime(reception.timeFormatted, translations.eveningTime));
+  setText("templateReceptionTime", formatEventTime(reception.timeFormatted, translations.receptionTime || "Reception: {time} onwards"));
+  setText("templateReceptionDinner", formatEventTime(reception.dinnerTimeFormatted, translations.eveningTime || "Dinner: {time} onwards"));
   setText("templateReceptionVenue", reception.venueName || "To be announced");
   setText("templateReceptionAddress", reception.venueAddress || "To be announced");
   setText("guestGreetingTitle", translations.guestTitle);
@@ -447,8 +451,9 @@ function initReceptionCardDownload() {
       });
 
       // 6. Date & Time
-      drawCentered(formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale), 405, `700 ${font(18, "'Playfair Display', serif")}`, "#1B432E");
-      drawCentered(formatEventTime(reception.timeFormatted, translations.eveningTime), 435, `700 ${font(16, "'Montserrat', sans-serif")}`, "#8C1D2D");
+      drawCentered(formatEventDate(reception.targetDateISO, reception.dateFormatted, translations.dateLocale), 398, `700 ${font(18, "'Playfair Display', serif")}`, "#1B432E");
+      drawCentered(formatEventTime(reception.timeFormatted, translations.receptionTime || "Reception: {time} onwards"), 424, `700 ${font(14, "'Montserrat', sans-serif")}`, "#1B432E");
+      drawCentered(formatEventTime(reception.dinnerTimeFormatted, translations.eveningTime || "Dinner: {time} onwards"), 446, `700 ${font(14, "'Montserrat', sans-serif")}`, "#8C1D2D");
 
       // 7. Venue & Address
       drawCentered(reception.venueName, 485, `700 ${font(16, "'Playfair Display', serif")}`, "#1A1A1A", 640);
@@ -616,9 +621,9 @@ function initCalendarButtons() {
   const receptionCalBtn = document.getElementById("receptionCalendarBtn");
   if (receptionCalBtn) {
     const title = encodeURIComponent("Wedding Reception: Akhila & Nikhil");
-    const details = encodeURIComponent("Wedding Reception & Dinner of Akhila & Nikhil (Dinner: 8:00 PM onwards). Venue: Kiranam & Jaggery Merchants Function Hall, Khammam.");
+    const details = encodeURIComponent("Wedding Reception & Dinner of Akhila & Nikhil (Reception: 6:30 PM onwards, Dinner: 8:00 PM onwards). Venue: Kiranam & Jaggery Merchants Function Hall, Khammam.");
     const location = encodeURIComponent("Kiranam & Jaggery Merchants Function Hall, Khammam");
-    const dates = "20261205T143000Z/20261205T183000Z";
+    const dates = "20261205T130000Z/20261205T183000Z";
     receptionCalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
   }
 }

@@ -343,10 +343,17 @@
   margin-top: 2px;
 }
 
+.reception-template-time,
 .reception-template-dinner {
-  font: 700 clamp(0.52rem, 1vw, 0.86rem) 'Montserrat', sans-serif;
+  font: 700 clamp(0.5rem, 0.95vw, 0.82rem) 'Montserrat', sans-serif;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+.reception-template-time {
+  color: #1B432E;
+}
+.reception-template-dinner {
   color: #8C1D2D;
-  letter-spacing: 0.04em;
 }
 
 .reception-template-venue {
