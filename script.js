@@ -67,6 +67,8 @@ function initDataBinding() {
 
   // Wedding Section
   setText("weddingCoupleNames", `${brideShortName} & ${groomShortName}`);
+  setText("templateWeddingHostNames", events?.wedding?.invitedBy || `${couple?.bride?.fatherName} & ${couple?.bride?.motherName}`);
+  setText("templateBrideRelation", events?.wedding?.brideRelation || `Daughter of ${couple?.bride?.fatherName} & ${couple?.bride?.motherName}`);
   
   const parentNames = [
     couple?.groom?.fatherName,
@@ -205,6 +207,8 @@ function applyLanguage(language) {
   setText("weddingSubTitle", translations.weddingSubtitle);
   setText("weddingMessage", translations.weddingMessage);
   setText("templateInvitationMessage", translations.weddingMessage);
+  setText("templateWeddingHostNames", translations?.weddingHostNames || events?.wedding?.invitedBy || `${WEDDING_CONFIG.couple.bride.fatherName} & ${WEDDING_CONFIG.couple.bride.motherName}`);
+  setText("templateBrideRelation", translations?.brideRelation || events?.wedding?.brideRelation || `Daughter of ${WEDDING_CONFIG.couple.bride.fatherName} & ${WEDDING_CONFIG.couple.bride.motherName}`);
   setText("weddingDate", formatEventDate(wedding.targetDateISO, wedding.dateFormatted, translations.dateLocale));
   setText("weddingTime", formatEventTime(wedding.timeFormatted, translations.muhurtham));
   setText("templateWeddingDate", formatEventDate(wedding.targetDateISO, wedding.dateFormatted, translations.dateLocale));
@@ -338,22 +342,27 @@ function initWeddingCardDownload() {
         return lines;
       };
 
-      drawCentered(wedding.sacredOm || "ఓం", 190, font(31, "'Noto Serif Telugu', serif"), "#701D25");
-      drawCentered(wedding.sacredBlessing || "॥ శ్రీ గణేశాయ నమః ॥", 220, font(18, "'Noto Serif Telugu', serif"), "#701D25");
-      drawCentered(translations.salutation, 260, font(11, "'Montserrat', sans-serif"), "#701D25");
-      drawCentered(`${couple.bride.fullName} & ${couple.groom.fullName}`, 316, font(28, "'Great Vibes', cursive"), "#701D25");
+      drawCentered(wedding.sacredOm || "ఓం", 182, font(28, "'Noto Serif Telugu', serif"), "#701D25");
+      drawCentered(wedding.sacredBlessing || "॥ శ్రీ గణేశాయ నమః ॥", 208, font(16, "'Noto Serif Telugu', serif"), "#701D25");
+      const hostLabel = translations.invitedByLabel || "INVITED BY";
+      drawCentered(hostLabel, 234, `700 ${font(10, "'Montserrat', sans-serif")}`, "#701D25");
+      const hostNames = translations.weddingHostNames || wedding.invitedBy || `${couple.bride.fatherName} & ${couple.bride.motherName}`;
+      drawCentered(hostNames, 252, `700 ${font(13, "'Playfair Display', serif")}`, "#2D2D2D", 540);
+      drawCentered(`${couple.bride.fullName} & ${couple.groom.fullName}`, 295, font(28, "'Great Vibes', cursive"), "#701D25");
+      const brideRelation = translations.brideRelation || wedding.brideRelation || `Daughter of ${couple.bride.fatherName} & ${couple.bride.motherName}`;
+      drawCentered(brideRelation, 320, `italic ${font(10, "'Montserrat', sans-serif")}`, "#555555", 520);
 
-      const messageFont = font(12, "'Cormorant Garamond', serif");
+      const messageFont = font(11, "'Cormorant Garamond', serif");
       const messageLines = wrap(translations.weddingMessage, 520, messageFont);
-      messageLines.slice(0, 4).forEach((line, index) => {
-        drawCentered(line, 365 + index * 17, messageFont, "#701D25", 520);
+      messageLines.slice(0, 3).forEach((line, index) => {
+        drawCentered(line, 355 + index * 16, messageFont, "#701D25", 520);
       });
-      drawCentered(formatEventDate(wedding.targetDateISO, wedding.dateFormatted, translations.dateLocale), 452, font(15, "'Playfair Display', serif"), "#701D25");
-      drawCentered(formatEventTime(wedding.timeFormatted, translations.muhurtham), 478, font(13, "'Montserrat', sans-serif"), "#701D25");
-      drawCentered(wedding.venueName, 523, font(13, "'Playfair Display', serif"), "#701D25", 560);
+      drawCentered(formatEventDate(wedding.targetDateISO, wedding.dateFormatted, translations.dateLocale), 425, font(14, "'Playfair Display', serif"), "#701D25");
+      drawCentered(formatEventTime(wedding.timeFormatted, translations.muhurtham), 450, font(12, "'Montserrat', sans-serif"), "#701D25");
+      drawCentered(wedding.venueName, 492, font(13, "'Playfair Display', serif"), "#701D25", 560);
       const addressLines = wrap(wedding.venueAddress, 510, font(10, "'Montserrat', sans-serif"));
       addressLines.slice(0, 2).forEach((line, index) => {
-        drawCentered(line, 548 + index * 14, font(10, "'Montserrat', sans-serif"), "#701D25", 510);
+        drawCentered(line, 516 + index * 14, font(10, "'Montserrat', sans-serif"), "#701D25", 510);
       });
 
       const link = document.createElement("a");
