@@ -627,47 +627,47 @@
       if (!imgReception.complete) return;
       ctx.drawImage(imgReception, 0, 0, canvas.width, canvas.height);
 
-      const centerX = canvas.width / 2; // 475
+      const groom = state.reception.groom.trim();
+      const bride = state.reception.bride.trim();
+
+      // If default names, display the pristine original card without any overlays!
+      const isDefault = (groom === "Venkatesh Reddy" && bride === "Ananya Reddy");
+      if (isDefault) {
+        return;
+      }
+
+      // If user typed custom names (e.g. in Telugu or different name):
+      // Cleanly cover from gold frame to gold frame
+      const centerX = canvas.width / 2;
+      const leftX = 114;
+      const boxWidth = canvas.width - (leftX * 2);
+      const topY = 610 + yOffset;
+      const boxHeight = 270;
+
+      const grad = ctx.createLinearGradient(leftX, topY, leftX + boxWidth, topY);
+      grad.addColorStop(0, '#F2DAC0');
+      grad.addColorStop(0.5, '#F9E8D6');
+      grad.addColorStop(1, '#FCEFDF');
+
+      ctx.fillStyle = grad;
+      ctx.fillRect(leftX, topY, boxWidth, boxHeight);
+
+      // Render custom names in elegant calligraphy
       const emerald = '#113E27';
       const gold = '#A67B28';
-      const goldLight = '#F7E7B8';
-      const white = '#FFFFFF';
 
       ctx.textAlign = 'center';
-
-      // 1. Groom & Bride Names in Luxury Calligraphy
       ctx.fillStyle = emerald;
-      ctx.font = `italic 700 ${Math.round(52 * scale)}px "Great Vibes", "Playfair Display", "Noto Serif Telugu", cursive`;
-      ctx.fillText(state.reception.groom, centerX, 690 + yOffset);
+      ctx.font = `italic 700 ${Math.round(50 * scale)}px "Great Vibes", "Playfair Display", "Noto Serif Telugu", cursive`;
+      ctx.fillText(groom, centerX, topY + 75);
 
       ctx.fillStyle = gold;
-      ctx.font = `italic 600 ${Math.round(36 * scale)}px "Great Vibes", "Playfair Display", cursive`;
-      ctx.fillText("— & —", centerX, 765 + yOffset);
+      ctx.font = `italic 600 ${Math.round(34 * scale)}px "Great Vibes", "Playfair Display", cursive`;
+      ctx.fillText("— & —", centerX, topY + 140);
 
       ctx.fillStyle = emerald;
-      ctx.font = `italic 700 ${Math.round(52 * scale)}px "Great Vibes", "Playfair Display", "Noto Serif Telugu", cursive`;
-      ctx.fillText(state.reception.bride, centerX, 845 + yOffset);
-
-      // 2. Date & Time
-      ctx.textAlign = 'left';
-      ctx.fillStyle = emerald;
-      ctx.font = `bold ${Math.round(23 * scale)}px "Montserrat", "Noto Serif Telugu", sans-serif`;
-      
-      // Date on left side (approx X=260)
-      ctx.fillText(state.reception.date, 260, 1070 + yOffset);
-
-      // Time on right side (approx X=610)
-      ctx.fillText(state.reception.time, 610, 1070 + yOffset);
-
-      // 3. Venue Box (Green Badge)
-      ctx.textAlign = 'center';
-      ctx.fillStyle = goldLight;
-      ctx.font = `bold ${Math.round(28 * scale)}px "Playfair Display", "Montserrat", sans-serif`;
-      ctx.fillText(state.reception.venueName, centerX, 1290 + yOffset);
-
-      ctx.fillStyle = white;
-      ctx.font = `500 ${Math.round(21 * scale)}px "Montserrat", sans-serif`;
-      ctx.fillText(state.reception.venueLocation, centerX, 1340 + yOffset);
+      ctx.font = `italic 700 ${Math.round(50 * scale)}px "Great Vibes", "Playfair Display", "Noto Serif Telugu", cursive`;
+      ctx.fillText(bride, centerX, topY + 215);
     }
 
     function wrapText(context, text, x, y, maxWidth, lineHeight) {
