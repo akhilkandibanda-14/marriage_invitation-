@@ -70,17 +70,10 @@ function initDataBinding() {
   setText("templateWeddingHostNames", events?.wedding?.invitedBy || `${couple?.bride?.fatherName} & ${couple?.bride?.motherName}`);
   setText("templateBrideRelation", events?.wedding?.brideRelation || `Daughter of ${couple?.bride?.fatherName} & ${couple?.bride?.motherName}`);
   
-  const parentNames = [
-    couple?.groom?.fatherName,
-    couple?.groom?.motherName,
-    couple?.bride?.fatherName,
-    couple?.bride?.motherName
-  ];
   const parentsNote = document.getElementById("weddingParentsNote");
-  if (parentNames.every(Boolean) && parentsNote) {
+  if (couple?.bride?.fatherName && couple?.bride?.motherName && parentsNote) {
     setElementHtml("weddingParentsNote", `
-      <span>Daughter of <strong>${couple.bride.fatherName}</strong> & <strong>${couple.bride.motherName}</strong></span><br>
-      <span>Son of <strong>${couple.groom.fatherName}</strong> & <strong>${couple.groom.motherName}</strong></span>
+      <span>Daughter of <strong>${couple.bride.fatherName}</strong> & <strong>${couple.bride.motherName}</strong></span>
     `);
     parentsNote.hidden = false;
   }
@@ -208,6 +201,14 @@ function applyLanguage(language) {
   setText("templateInvitationMessage", translations.weddingMessage);
   setText("templateWeddingHostNames", translations?.weddingHostNames || events?.wedding?.invitedBy || `${WEDDING_CONFIG.couple.bride.fatherName} & ${WEDDING_CONFIG.couple.bride.motherName}`);
   setText("templateBrideRelation", translations?.brideRelation || events?.wedding?.brideRelation || `Daughter of ${WEDDING_CONFIG.couple.bride.fatherName} & ${WEDDING_CONFIG.couple.bride.motherName}`);
+  const weddingParentsElem = document.getElementById("weddingParentsNote");
+  if (weddingParentsElem) {
+    if (lang === "te") {
+      setElementHtml("weddingParentsNote", `<span><strong>${WEDDING_CONFIG.couple.bride.fatherName}</strong> & <strong>${WEDDING_CONFIG.couple.bride.motherName}</strong> గార్ల సుపుత్రిక</span>`);
+    } else {
+      setElementHtml("weddingParentsNote", `<span>Daughter of <strong>${WEDDING_CONFIG.couple.bride.fatherName}</strong> & <strong>${WEDDING_CONFIG.couple.bride.motherName}</strong></span>`);
+    }
+  }
   setText("weddingDate", formatEventDate(wedding.targetDateISO, wedding.dateFormatted, translations.dateLocale));
   setText("weddingTime", formatEventTime(wedding.timeFormatted, translations.muhurtham));
   setText("weddingLunch", formatEventTime(wedding.lunchTimeFormatted, translations.lunchTime));
